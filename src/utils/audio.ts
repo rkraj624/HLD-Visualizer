@@ -76,6 +76,35 @@ class SoundEffects {
       // Ignore audio errors
     }
   }
+
+  public playTourChime() {
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    try {
+      // Warm, harmonic dual-tone chime (E5 + B5)
+      const now = ctx.currentTime;
+      [659.25, 987.77].forEach((freq) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.35);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.35);
+      });
+    } catch {
+      // Ignore audio errors
+    }
+  }
 }
 
 export const soundFx = new SoundEffects();
+

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Pause, RotateCcw, Zap, Gauge, Sparkles, Volume2, VolumeX, Flame } from 'lucide-react';
+import { Play, Pause, RotateCcw, Zap, Gauge, Sparkles, Volume2, VolumeX, Flame, Compass } from 'lucide-react';
 import type { SimulationConfig } from '../types';
 import { PRESET_SCENARIOS } from '../utils/constants';
 import { soundFx } from '../utils/audio';
@@ -11,6 +11,7 @@ interface HeaderProps {
   onTriggerBurst: (count: number) => void;
   onSelectPreset: (presetId: string) => void;
   onRunStressTest: () => void;
+  onStartTour: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onTriggerBurst,
   onSelectPreset,
   onRunStressTest,
+  onStartTour,
 }) => {
   const [isMuted, setIsMuted] = useState(soundFx.getMuted());
 
@@ -76,6 +78,15 @@ export const Header: React.FC<HeaderProps> = ({
             title={isMuted ? 'Unmute Web Audio Synthesizer' : 'Mute Synthesizer'}
           >
             {!isMuted ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+          </button>
+
+          {/* Tour Guide */}
+          <button
+            onClick={onStartTour}
+            className="tour-trigger-btn"
+            title="Launch interactive walking guide"
+          >
+            <Compass className="w-3.5 h-3.5" /> Tour Guide
           </button>
 
           {/* Speed Selector */}

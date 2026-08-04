@@ -11,6 +11,7 @@ import { ControlsPanel } from './components/ControlsPanel';
 import { MetricsDashboard } from './components/MetricsDashboard';
 import { CodeSnippets } from './components/CodeSnippets';
 import { ComparisonMatrix } from './components/ComparisonMatrix';
+import { WalkingGuide } from './components/WalkingGuide';
 import { Award, Flame, X } from 'lucide-react';
 
 const INITIAL_CONFIG: SimulationConfig = {
@@ -55,6 +56,11 @@ export function App() {
 
   const [stressReport, setStressReport] = useState<BenchmarkReport | null>(null);
   const [isStressRunning, setIsStressRunning] = useState(false);
+
+  // Walking Guide Tour state
+  const [showTour, setShowTour] = useState(() => {
+    return !localStorage.getItem('rlv-tour-seen');
+  });
 
   const lastTickTimeRef = useRef<number>(Date.now());
   const lastAutoRequestTimeRef = useRef<number>(Date.now());
@@ -239,6 +245,9 @@ export function App() {
 
   return (
     <div className="min-h-screen pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6 font-sans">
+      {/* Walking Guide Tour */}
+      <WalkingGuide isOpen={showTour} onClose={() => setShowTour(false)} />
+
       {/* Header */}
       <Header
         config={config}
@@ -247,6 +256,7 @@ export function App() {
         onTriggerBurst={handleTriggerBurst}
         onSelectPreset={handleSelectPreset}
         onRunStressTest={handleRunStressTest}
+        onStartTour={() => setShowTour(true)}
       />
 
       {/* Algorithm Selector Tabs */}
