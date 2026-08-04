@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Play, Pause, RotateCcw, Zap, Gauge, Sparkles, Volume2, VolumeX, Flame, Compass } from 'lucide-react';
+import { Play, Pause, RotateCcw, Zap, Gauge, Sparkles, Volume2, VolumeX, Flame, Compass, PanelLeft, PanelLeftClose } from 'lucide-react';
 import type { SimulationConfig } from '../types';
 import { PRESET_SCENARIOS } from '../utils/constants';
 import { soundFx } from '../utils/audio';
+import { HLD_TOPICS } from '../utils/hldTopics';
 
 interface HeaderProps {
+  activeTopicId: string;
   config: SimulationConfig;
   onChangeConfig: (newConfig: Partial<SimulationConfig>) => void;
   onReset: () => void;
@@ -12,9 +14,12 @@ interface HeaderProps {
   onSelectPreset: (presetId: string) => void;
   onRunStressTest: () => void;
   onStartTour: () => void;
+  isSidebarOpen?: boolean;
+  onToggleSidebar?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
+  activeTopicId,
   config,
   onChangeConfig,
   onReset,
@@ -22,6 +27,8 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectPreset,
   onRunStressTest,
   onStartTour,
+  isSidebarOpen,
+  onToggleSidebar,
 }) => {
   const [isMuted, setIsMuted] = useState(soundFx.getMuted());
 
@@ -31,11 +38,83 @@ export const Header: React.FC<HeaderProps> = ({
     setIsMuted(nextMute);
   };
 
+  // Render Topic-Specific Header when navigating outside Rate Limiting
+  if (activeTopicId !== 'rate-limiting') {
+    const activeTopic = HLD_TOPICS.find((t) => t.id === activeTopicId);
+
+    return (
+      <header className="glass-panel p-5 mb-6 border-b border-white/10 relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 relative z-10">
+          {/* Title & Brand for Active Topic */}
+          <div className="flex items-center gap-3.5">
+            {onToggleSidebar && (
+              <button
+                onClick={onToggleSidebar}
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 border border-cyan-500/30 transition-all flex items-center justify-center glow-cyan"
+                title={isSidebarOpen ? 'Collapse HLD Topics Sidebar' : 'Expand HLD Topics Sidebar'}
+              >
+                {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeft className="w-5 h-5" />}
+              </button>
+            )}
+
+            <div
+              className="w-11 h-11 rounded-2xl flex items-center justify-center shadow-lg border border-white/20"
+              style={{
+                backgroundColor: activeTopic ? `${activeTopic.accentColor}25` : '#2563eb25',
+                borderColor: activeTopic ? activeTopic.accentColor : '#3b82f6',
+                color: activeTopic?.accentColor || '#38bdf8',
+              }}
+            >
+              <Zap className="w-6 h-6 animate-pulse" />
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl font-extrabold text-white tracking-tight font-heading">
+                  {activeTopic?.title || 'System Architecture Spec'}
+                </h1>
+                {activeTopic?.status === 'interactive' ? (
+                  <span className="badge badge-cyan text-[10px]">⚡ Interactive Simulator</span>
+                ) : (
+                  <span className="badge text-[10px] bg-purple-500/20 text-purple-300 border-purple-500/40">📄 HLD Spec</span>
+                )}
+              </div>
+              <p className="text-xs text-gray-400">
+                {activeTopic?.description || 'High-level system design architecture reference & implementation guide'}
+              </p>
+            </div>
+          </div>
+
+          {/* Action Controls: Tour Guide */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onStartTour}
+              className="tour-trigger-btn"
+              title="Launch interactive walking guide"
+            >
+              <Compass className="w-3.5 h-3.5" /> Tour Guide
+            </button>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="glass-panel p-5 mb-6 border-b border-white/10 relative overflow-hidden">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-4 relative z-10">
         {/* Title & Brand */}
         <div className="flex items-center gap-3.5">
+          {onToggleSidebar && (
+            <button
+              onClick={onToggleSidebar}
+              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 border border-cyan-500/30 transition-all flex items-center justify-center glow-cyan"
+              title={isSidebarOpen ? 'Collapse HLD Topics Sidebar' : 'Expand HLD Topics Sidebar'}
+            >
+              {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeft className="w-5 h-5" />}
+            </button>
+          )}
+
           <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30 border border-white/20 glow-blue">
             <Zap className="w-6 h-6 text-white animate-pulse" />
           </div>

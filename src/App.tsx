@@ -12,6 +12,8 @@ import { MetricsDashboard } from './components/MetricsDashboard';
 import { CodeSnippets } from './components/CodeSnippets';
 import { ComparisonMatrix } from './components/ComparisonMatrix';
 import { WalkingGuide } from './components/WalkingGuide';
+import { Sidebar } from './components/Sidebar';
+import { TopicModuleViewer } from './components/TopicModuleViewer';
 import { Award, Flame, X } from 'lucide-react';
 
 const INITIAL_CONFIG: SimulationConfig = {
@@ -33,6 +35,8 @@ interface BenchmarkReport {
 }
 
 export function App() {
+  const [activeTopicId, setActiveTopicId] = useState<string>('rate-limiting');
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
   const [algorithm, setAlgorithm] = useState<AlgorithmType>('token-bucket');
   const [config, setConfig] = useState<SimulationConfig>(INITIAL_CONFIG);
 
@@ -192,7 +196,7 @@ export function App() {
 
   // Main Simulation Loop Tick
   useEffect(() => {
-    if (config.isPaused) return;
+    if (config.isPaused || activeTopicId !== 'rate-limiting') return;
 
     const interval = setInterval(() => {
       const now = Date.now();
@@ -241,57 +245,83 @@ export function App() {
     }, 100 / config.simSpeed);
 
     return () => clearInterval(interval);
-  }, [config, algorithm, handleIncomingRequest]);
+  }, [config, algorithm, activeTopicId, handleIncomingRequest]);
 
   return (
-    <div className="min-h-screen pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6 font-sans">
+    <div className="min-h-screen font-sans">
       {/* Walking Guide Tour */}
       <WalkingGuide isOpen={showTour} onClose={() => setShowTour(false)} />
 
-      {/* Header */}
-      <Header
-        config={config}
-        onChangeConfig={(newCfg) => setConfig((prev) => ({ ...prev, ...newCfg }))}
-        onReset={handleReset}
-        onTriggerBurst={handleTriggerBurst}
-        onSelectPreset={handleSelectPreset}
-        onRunStressTest={handleRunStressTest}
-        onStartTour={() => setShowTour(true)}
+      {/* HLD Topics Navigation Sidebar */}
+      <Sidebar
+        activeTopicId={activeTopicId}
+        onSelectTopic={(topicId) => {
+          setActiveTopicId(topicId);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        isOpen={isSidebarOpen}
+        onToggleOpen={() => setIsSidebarOpen(!isSidebarOpen)}
       />
 
-      {/* Algorithm Selector Tabs */}
-      <AlgorithmSelector selected={algorithm} onSelect={(algo) => { setAlgorithm(algo); handleReset(); }} />
+      {/* Main Container Area with Responsive Left Margin */}
+      <div className={`transition-all duration-300 ${isSidebarOpen ? 'lg:pl-80' : 'lg:pl-20'}`}>
+        <div className="pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6">
+          {/* Header */}
+          <Header
+            activeTopicId={activeTopicId}
+            config={config}
+            onChangeConfig={(newCfg) => setConfig((prev) => ({ ...prev, ...newCfg }))}
+            onReset={handleReset}
+            onTriggerBurst={handleTriggerBurst}
+            onSelectPreset={handleSelectPreset}
+            onRunStressTest={handleRunStressTest}
+            onStartTour={() => setShowTour(true)}
+            isSidebarOpen={isSidebarOpen}
+            onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
 
-      {/* Main Flow Canvas Visualizer */}
-      <VisualizerCanvas
-        algorithm={algorithm}
-        state={state}
-        config={config}
-        recentLogs={state.logs}
-      />
+          {/* TOPIC ROUTING */}
+          {activeTopicId === 'rate-limiting' ? (
+            <>
+              {/* Algorithm Selector Tabs */}
+              <AlgorithmSelector selected={algorithm} onSelect={(algo) => { setAlgorithm(algo); handleReset(); }} />
 
-      {/* Interactive Educational Breakdown & Analogy Stepper */}
-      <EducationalGuide algorithm={algorithm} />
+              {/* Main Flow Canvas Visualizer */}
+              <VisualizerCanvas
+                algorithm={algorithm}
+                state={state}
+                config={config}
+                recentLogs={state.logs}
+              />
 
-      {/* Dynamic Controls Tuner */}
-      <ControlsPanel
-        algorithm={algorithm}
-        config={config}
-        onChangeConfig={(newCfg) => setConfig((prev) => ({ ...prev, ...newCfg }))}
-        onSendSingleRequest={() => handleIncomingRequest()}
-      />
+              {/* Interactive Educational Breakdown & Analogy Stepper */}
+              <EducationalGuide algorithm={algorithm} />
 
-      {/* Telemetry Dashboard & Sparkline */}
-      <MetricsDashboard state={state} onClearLogs={() => setState((p) => ({ ...p, logs: [] }))} />
+              {/* Dynamic Controls Tuner */}
+              <ControlsPanel
+                algorithm={algorithm}
+                config={config}
+                onChangeConfig={(newCfg) => setConfig((prev) => ({ ...prev, ...newCfg }))}
+                onSendSingleRequest={() => handleIncomingRequest()}
+              />
 
-      {/* Production Implementation Snippets */}
-      <CodeSnippets algorithm={algorithm} />
+              {/* Telemetry Dashboard & Sparkline */}
+              <MetricsDashboard state={state} onClearLogs={() => setState((p) => ({ ...p, logs: [] }))} />
 
-      {/* Architecture Comparison Matrix */}
-      <ComparisonMatrix
-        selectedAlgorithm={algorithm}
-        onSelectAlgorithm={(algo) => { setAlgorithm(algo); handleReset(); }}
-      />
+              {/* Production Implementation Snippets */}
+              <CodeSnippets algorithm={algorithm} />
+
+              {/* Architecture Comparison Matrix */}
+              <ComparisonMatrix
+                selectedAlgorithm={algorithm}
+                onSelectAlgorithm={(algo) => { setAlgorithm(algo); handleReset(); }}
+              />
+            </>
+          ) : (
+            <TopicModuleViewer topicId={activeTopicId} />
+          )}
+        </div>
+      </div>
 
       {/* Stress Test Modal Report Card */}
       {stressReport && (
