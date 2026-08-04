@@ -191,7 +191,15 @@ export const VisualizerCanvas: React.FC<VisualizerCanvasProps> = ({
                 </span>
               </div>
 
-              <div className="w-52 h-44 border-2 border-amber-500-50 rounded-b-3xl bg-amber-950-20 p-3-5 flex flex-wrap-reverse content-start gap-2 justify-center relative overflow-hidden shadow-2xl">
+              <div
+                className="border-2 border-amber-500-50 rounded-b-3xl bg-amber-950-20 flex flex-wrap-reverse content-end gap-2 justify-center relative overflow-hidden shadow-2xl"
+                style={{
+                  width: '100%',
+                  maxWidth: '16rem',
+                  minHeight: '11rem',
+                  padding: '2.25rem 0.875rem 0.875rem 0.875rem',
+                }}
+              >
                 <div className="absolute top-0 left-50pct translate-x-50pct-neg w-2 h-7 bg-amber-400 rounded-b shadow-lg" />
 
                 {Array.from({ length: Math.floor(state.tokens) }).map((_, i) => (
