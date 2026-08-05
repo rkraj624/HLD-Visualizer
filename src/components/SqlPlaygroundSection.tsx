@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Database, CheckCircle2, Terminal } from 'lucide-react';
 import { soundFx } from '../utils/audio';
+import { SqlEditorModal } from './SqlEditorModal';
 
 interface SqlPlaygroundSectionProps {
   onNavigateToSharding: () => void;
@@ -10,48 +11,48 @@ const SQL_CONCEPTS = [
   {
     keyword: 'SELECT',
     color: '#06b6d4',
-    desc: 'Query rows from a table or across joined tables.',
-    example: "SELECT * FROM users WHERE country = 'IN';",
+    desc: 'Query rows from a table or filter records with conditions.',
+    example: "SELECT * FROM users WHERE status = 'ACTIVE';",
   },
   {
     keyword: 'INSERT',
     color: '#a855f7',
-    desc: 'Write new records into your database tables.',
-    example: "INSERT INTO orders (user_id, total) VALUES ('u91', 299);",
+    desc: 'Write and store new records in your database tables.',
+    example: "INSERT INTO orders (user_id, amount) VALUES (101, 299.00);",
   },
   {
     keyword: 'GROUP BY',
     color: '#f59e0b',
-    desc: 'Aggregate rows into summaries (counts, sums, averages).',
-    example: "SELECT region, COUNT(*) FROM users GROUP BY region;",
+    desc: 'Aggregate data rows into summary stats (COUNT, SUM, AVG).',
+    example: "SELECT status, COUNT(*) FROM orders GROUP BY status;",
   },
   {
     keyword: 'JOIN',
     color: '#10b981',
-    desc: 'Combine related data from multiple tables together.',
-    example: "SELECT u.name, o.total FROM users u JOIN orders o ON u.id = o.user_id;",
+    desc: 'Relate and combine records across multiple tables.',
+    example: "SELECT u.username, o.amount FROM users u JOIN orders o ON u.id = o.user_id;",
   },
 ];
 
 const PRESET_QUERIES = [
-  "SELECT * FROM users WHERE status = 'ACTIVE';",
-  "INSERT INTO orders (user_id, amount) VALUES ('usr_991', 499.00);",
-  "SELECT shard_id, COUNT(*) FROM user_records GROUP BY shard_id;",
+  "SELECT id, username, email, status FROM users WHERE status = 'ACTIVE';",
+  "INSERT INTO orders (user_id, amount, status) VALUES (101, 149.50, 'COMPLETED');",
+  "SELECT status, COUNT(*) AS count, SUM(amount) AS total FROM orders GROUP BY status;",
 ];
 
-export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNavigateToSharding }) => {
+export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNavigateToSharding: _onNavigateToSharding }) => {
   const [activeQuery, setActiveQuery] = useState(PRESET_QUERIES[0]);
   const [result, setResult] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRun = () => {
     soundFx.playSuccess();
-    setResult('Query executed across 4 PostgreSQL shards — 200 OK (2.8ms) — 3 rows returned');
+    setResult('Query executed successfully — 200 OK (1.8ms) — 5 rows returned');
   };
 
   return (
     <section style={{ background: '#020617', width: '100%' }}>
-
-      {/* Subtle divider glow between the two sections */}
+      {/* Divider */}
       <div style={{
         height: 1,
         background: 'linear-gradient(to right, transparent, rgba(6,182,212,0.3), rgba(168,85,247,0.3), transparent)',
@@ -59,7 +60,7 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
 
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '80px 48px', display: 'flex', flexDirection: 'column', gap: 48 }}>
 
-        {/* ── Header ── */}
+        {/* Header */}
         <div style={{ textAlign: 'center' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -77,11 +78,11 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
             </span>
           </h2>
           <p style={{ color: '#94a3b8', fontSize: 14, maxWidth: 580, margin: '0 auto', lineHeight: 1.7 }}>
-            SQL powers every production database. Write and run real queries below — and see how they get routed across horizontally sharded PostgreSQL clusters.
+            SQL powers data retrieval in modern systems. Write and run queries directly in your browser to master database fundamentals.
           </p>
         </div>
 
-        {/* ── SQL Concept Cards ── */}
+        {/* Concept Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
           {SQL_CONCEPTS.map((concept) => (
             <div
@@ -116,16 +117,15 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
           ))}
         </div>
 
-        {/* ── Live SQL Console ── */}
+        {/* Live SQL Console */}
         <div style={{
           background: 'rgba(5,10,25,0.95)', border: '1px solid rgba(16,185,129,0.25)',
           borderRadius: 20, padding: 32, boxShadow: '0 0 60px rgba(16,185,129,0.05)',
           display: 'flex', flexDirection: 'column', gap: 20, fontFamily: 'monospace',
         }}>
-          {/* Console title bar */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#6ee7b7', fontWeight: 700, fontSize: 12 }}>
-              <Terminal size={15} /> Live SQL Console — PostgreSQL Sharded Cluster
+              <Terminal size={15} /> Live SQL Console
             </div>
             <div style={{ display: 'flex', gap: 6 }}>
               <span style={{ width: 12, height: 12, borderRadius: '50%', background: 'rgba(239,68,68,0.8)', display: 'inline-block' }} />
@@ -134,7 +134,7 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
             </div>
           </div>
 
-          {/* Preset query chips */}
+          {/* Preset chips */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {PRESET_QUERIES.map((q, i) => (
               <button key={i} onClick={() => { setActiveQuery(q); setResult(null); }}
@@ -142,16 +142,13 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
                   fontSize: 10, padding: '6px 12px', borderRadius: 8, cursor: 'pointer',
                   background: 'rgba(30,41,59,0.9)', color: '#67e8f9',
                   border: '1px solid rgba(51,65,85,0.8)', fontFamily: 'monospace',
-                  maxWidth: 260, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
-                  transition: 'background 0.15s, border-color 0.15s',
+                  maxWidth: 280, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(51,65,85,0.9)'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(30,41,59,0.9)'; }}
               >{q}</button>
             ))}
           </div>
 
-          {/* Query editor row */}
+          {/* Query input */}
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <input
               type="text"
@@ -163,10 +160,8 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
                 background: '#020617', border: '1px solid rgba(51,65,85,0.9)',
                 borderRadius: 12, padding: '12px 16px',
                 fontSize: 12, color: '#67e8f9', fontFamily: 'monospace',
-                outline: 'none', transition: 'border-color 0.2s',
+                outline: 'none',
               }}
-              onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = '#34d399'; }}
-              onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = 'rgba(51,65,85,0.9)'; }}
             />
             <button onClick={handleRun}
               style={{
@@ -174,16 +169,13 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
                 background: 'linear-gradient(to right,#059669,#0891b2)', color: '#fff',
                 fontWeight: 700, fontSize: 12, border: '1px solid rgba(52,211,153,0.4)',
                 fontFamily: 'monospace', whiteSpace: 'nowrap',
-                transition: 'transform 0.15s, box-shadow 0.15s',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.04)'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
             >
               Run Query ⚡
             </button>
           </div>
 
-          {/* Result panel */}
+          {/* Result */}
           {result ? (
             <div style={{ background: 'rgba(6,78,59,0.25)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: 12, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#6ee7b7', fontWeight: 700, fontSize: 12, borderBottom: '1px solid rgba(30,41,59,0.8)', paddingBottom: 10 }}>
@@ -193,22 +185,23 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 10 }}>
                 <thead>
                   <tr style={{ color: '#64748b', borderBottom: '1px solid rgba(30,41,59,0.8)' }}>
-                    {['record_id', 'user_key', 'routed_shard', 'partition_hash'].map((h) => (
+                    {['id', 'username', 'email', 'country', 'status'].map((h) => (
                       <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontWeight: 600 }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    ['#rec_91042', 'usr_991',   'Shard-1 (US-West)',  'Hash % 4 = 1'],
-                    ['#rec_11820', 'usr_88401', 'Shard-3 (AP-South)', 'Hash % 4 = 3'],
-                    ['#rec_50031', 'usr_2219',  'Shard-0 (US-East)',  'Hash % 4 = 0'],
-                  ].map(([id, key, shard, hash]) => (
-                    <tr key={id} style={{ borderBottom: '1px solid rgba(15,23,42,0.8)' }}>
+                    [101, 'alice_w', 'alice@example.com', 'US', 'ACTIVE'],
+                    [102, 'bob_k',   'bob@example.com',   'IN', 'ACTIVE'],
+                    [103, 'carol_m', 'carol@example.com', 'GB', 'ACTIVE'],
+                  ].map(([id, key, email, country, status]) => (
+                    <tr key={id as number} style={{ borderBottom: '1px solid rgba(15,23,42,0.8)' }}>
                       <td style={{ padding: '6px 8px', color: '#94a3b8' }}>{id}</td>
                       <td style={{ padding: '6px 8px', color: '#67e8f9', fontWeight: 700 }}>{key}</td>
-                      <td style={{ padding: '6px 8px', color: '#6ee7b7' }}>{shard}</td>
-                      <td style={{ padding: '6px 8px', color: '#f9a8d4' }}>{hash}</td>
+                      <td style={{ padding: '6px 8px', color: '#e2e8f0' }}>{email}</td>
+                      <td style={{ padding: '6px 8px', color: '#6ee7b7' }}>{country}</td>
+                      <td style={{ padding: '6px 8px', color: '#f9a8d4' }}>{status}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,14 +213,14 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
               border: '1px solid rgba(30,41,59,0.8)', textAlign: 'center',
               color: '#475569', fontSize: 11,
             }}>
-              Run a query above to see live sharded database execution results
+              Run a query above to see execution results
             </div>
           )}
         </div>
 
-        {/* ── CTA ── */}
+        {/* CTA */}
         <div style={{ textAlign: 'center' }}>
-          <button onClick={onNavigateToSharding}
+          <button onClick={() => setIsModalOpen(true)}
             style={{
               padding: '16px 32px', borderRadius: 16, cursor: 'pointer',
               background: 'linear-gradient(to right,#059669,#0891b2,#2563eb)',
@@ -237,18 +230,20 @@ export const SqlPlaygroundSection: React.FC<SqlPlaygroundSectionProps> = ({ onNa
               display: 'inline-flex', alignItems: 'center', gap: 10,
               transition: 'transform 0.15s, box-shadow 0.15s',
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.04)'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
           >
             <Database size={18} />
-            Launch Full DB Sharding & SQL Simulator
+            Open Full SQL Studio
           </button>
           <p style={{ color: '#475569', fontSize: 11, marginTop: 10, fontFamily: 'monospace' }}>
-            Includes Hash Sharding, Range Partitioning & Read Replica controls
+            Full SQL query editor with interactive database schema & query results
           </p>
         </div>
 
       </div>
+
+      {isModalOpen && (
+        <SqlEditorModal onClose={() => setIsModalOpen(false)} />
+      )}
     </section>
   );
 };

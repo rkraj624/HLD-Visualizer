@@ -112,16 +112,6 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex flex-col lg:flex-row items-center justify-between gap-4 relative z-10">
         {/* Title & Brand */}
         <div className="flex items-center gap-3.5">
-          {onToggleSidebar && (
-            <button
-              onClick={onToggleSidebar}
-              className="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-cyan-400 border border-cyan-500/30 transition-all flex items-center justify-center glow-cyan"
-              title={isSidebarOpen ? 'Collapse HLD Topics Sidebar' : 'Expand HLD Topics Sidebar'}
-            >
-              {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeft className="w-5 h-5" />}
-            </button>
-          )}
-
           <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30 border border-white/20 glow-blue">
             <Zap className="w-6 h-6 text-white animate-pulse" />
           </div>

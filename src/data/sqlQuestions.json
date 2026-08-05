@@ -1,0 +1,2382 @@
+[
+  {
+    "id": 1,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display all the information of the EMP table?",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp",
+    "solution": "SELECT * FROM emp;",
+    "xp": 55
+  },
+  {
+    "id": 2,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display unique Jobs from EMP table?",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT DISTINCT job FROM emp",
+    "solution": "SELECT DISTINCT job FROM emp;",
+    "xp": 60
+  },
+  {
+    "id": 3,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps in the asc order of their Salaries?",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp ORDER BY sal ASC",
+    "solution": "SELECT * FROM emp ORDER BY sal ASC;",
+    "xp": 60
+  },
+  {
+    "id": 4,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the details of the emps in asc order of the Dptnos and desc of Jobs?",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp ORDER BY deptno ASC,job DESC",
+    "solution": "SELECT * FROM emp ORDER BY deptno ASC,job DESC;",
+    "xp": 65
+  },
+  {
+    "id": 5,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display all the unique job groups in the descending order?",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT DISTINCT job FROM emp ORDER BY job DESC",
+    "solution": "SELECT DISTINCT job FROM emp ORDER BY job DESC;",
+    "xp": 65
+  },
+  {
+    "id": 6,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display all the details of all 'Mgrs'.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno IN ( SELECT mgr FROM emp)",
+    "solution": "SELECT * FROM emp WHERE empno IN ( SELECT mgr FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 7,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined before 1981.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate < ('01-jan-81')",
+    "solution": "SELECT * FROM emp WHERE hiredate < ('01-jan-81');",
+    "xp": 70
+  },
+  {
+    "id": 8,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the Empno, Ename, Sal, Daily sal of all emps in the asc order of Annsal.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT empno ,ename ,sal,sal/30,12*sal annsal FROM emp ORDER BY annsal ASC",
+    "solution": "SELECT empno ,ename ,sal,sal/30,12*sal annsal FROM emp ORDER BY annsal ASC;",
+    "xp": 80
+  },
+  {
+    "id": 9,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the Empno, Ename, job, Hiredate, Exp of all Mgrs.",
+    "hint": "Use a subquery, BETWEEN.",
+    "expectedQuery": "SELECT empno,ename ,job,hiredate, MONTHS_BETWEEN(SYSDATE,hiredate) exp FROM emp WHERE empno IN (SELECT mgr FROM emp)",
+    "solution": "SELECT empno,ename ,job,hiredate, MONTHS_BETWEEN(SYSDATE,hiredate) exp FROM emp WHERE empno IN (SELECT mgr FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 10,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the Empno, Ename, Sal, Exp of all emps working for Mgr 7369.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT empno,ename,sal,exp FROM emp WHERE mgr = 7369",
+    "solution": "SELECT empno,ename,sal,exp FROM emp WHERE mgr = 7369;",
+    "xp": 70
+  },
+  {
+    "id": 11,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display all the details of the emps whose Comm. Is more than their Sal.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE comm. > sal",
+    "solution": "SELECT * FROM emp WHERE comm. > sal;",
+    "xp": 60
+  },
+  {
+    "id": 12,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps in the asc order of Designations of those joined after the second half of 1981.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate > ('30-jun-81') AND TO_CHAR(hiredate,'YYYY') = 1981 ORDER BY job ASC",
+    "solution": "SELECT * FROM emp WHERE hiredate > ('30-jun-81') AND TO_CHAR(hiredate,'YYYY') = 1981 ORDER BY job ASC;",
+    "xp": 90
+  },
+  {
+    "id": 13,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps along with their Exp and Daily Sal is more than Rs.100.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE (sal/30) >100",
+    "solution": "SELECT * FROM emp WHERE (sal/30) >100;",
+    "xp": 65
+  },
+  {
+    "id": 14,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are either 'CLERK' or 'ANALYST' in the Desc order.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'CLERK' OR job = 'ANALYST' ORDER BY job DESC",
+    "solution": "SELECT * FROM emp WHERE job = 'CLERK' OR job = 'ANALYST' ORDER BY job DESC;",
+    "xp": 80
+  },
+  {
+    "id": 15,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined on 1-MAY-81,3-DEC-81,17-DEC-81,19-JAN- 80 in asc order of seniority.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate IN ('01-may-81','03-dec-81','17-dec- 81','19-jan-80') ORDER BY hiredate ASC",
+    "solution": "SELECT * FROM emp WHERE hiredate IN ('01-may-81','03-dec-81','17-dec- 81','19-jan-80') ORDER BY hiredate ASC;",
+    "xp": 90
+  },
+  {
+    "id": 16,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp who are working for the Deptno 10 or20.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno = 10 OR deptno = 20",
+    "solution": "SELECT * FROM emp WHERE deptno = 10 OR deptno = 20;",
+    "xp": 70
+  },
+  {
+    "id": 17,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are joined in the year 81.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate BETWEEN '01-jan-81' AND '31-dec-81'",
+    "solution": "SELECT * FROM emp WHERE hiredate BETWEEN '01-jan-81' AND '31-dec-81';",
+    "xp": 75
+  },
+  {
+    "id": 18,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are joined in the month of Aug 1980.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate BETWEEN '01-aug-80' AND '31-aug-80'",
+    "solution": "SELECT * FROM emp WHERE hiredate BETWEEN '01-aug-80' AND '31-aug-80';",
+    "xp": 75
+  },
+  {
+    "id": 19,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps Who Annual sal ranging from 22000 and 45000.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE 12*sal BETWEEN 22000 AND 45000",
+    "solution": "SELECT * FROM emp WHERE 12*sal BETWEEN 22000 AND 45000;",
+    "xp": 70
+  },
+  {
+    "id": 20,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the Enames those are having five characters in their Names.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT ename FROM emp WHERE LENGTH (ename) = 5",
+    "solution": "SELECT ename FROM emp WHERE LENGTH (ename) = 5;",
+    "xp": 65
+  },
+  {
+    "id": 21,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Enames those are starting with 'S' and with five characters.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT ename FROM emp WHERE ename LIKE 'S%' AND LENGTH (ename) = 5",
+    "solution": "SELECT ename FROM emp WHERE ename LIKE 'S%' AND LENGTH (ename) = 5;",
+    "xp": 110
+  },
+  {
+    "id": 22,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps those are having four chars and third character must be 'r'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH(ename) = 4 AND ename LIKE '__R%'",
+    "solution": "SELECT * FROM emp WHERE LENGTH(ename) = 4 AND ename LIKE '__R%';",
+    "xp": 110
+  },
+  {
+    "id": 23,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Five character names starting with 'S' and ending with 'H'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH(ename) = 5 AND ename LIKE 'S%H'",
+    "solution": "SELECT * FROM emp WHERE LENGTH(ename) = 5 AND ename LIKE 'S%H';",
+    "xp": 110
+  },
+  {
+    "id": 24,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined in January.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'mon') = 'jan'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'mon') = 'jan';",
+    "xp": 70
+  },
+  {
+    "id": 25,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who joined in the month of which second character is 'a'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'mon') LIKE '_a_'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'mon') LIKE '_a_';",
+    "xp": 110
+  },
+  {
+    "id": 26,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose Sal is four digit number ending with Zero.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH (sal) = 4 AND sal LIKE '%0'",
+    "solution": "SELECT * FROM emp WHERE LENGTH (sal) = 4 AND sal LIKE '%0';",
+    "xp": 110
+  },
+  {
+    "id": 27,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose names having a character set 'll' together.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename LIKE '%LL%'",
+    "solution": "SELECT * FROM emp WHERE ename LIKE '%LL%';",
+    "xp": 105
+  },
+  {
+    "id": 28,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps those who joined in 80's.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'yy') LIKE '8%'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'yy') LIKE '8%';",
+    "xp": 110
+  },
+  {
+    "id": 29,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who does not belong to Deptno 20.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno NOT IN (20)",
+    "solution": "SELECT * FROM emp WHERE deptno NOT IN (20);",
+    "xp": 65
+  },
+  {
+    "id": 30,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List all the emps except 'PRESIDENT' & 'MGR\" in asc order of Salaries.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE job NOT IN ('PRESIDENT','MANAGER') ORDER BY sal ASC",
+    "solution": "SELECT * FROM emp WHERE job NOT IN ('PRESIDENT','MANAGER') ORDER BY sal ASC;",
+    "xp": 80
+  },
+  {
+    "id": 31,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List all the emps who joined before or after 1981.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'YYYY') NOT IN ('1981')",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'YYYY') NOT IN ('1981');",
+    "xp": 75
+  },
+  {
+    "id": 32,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose Empno not starting with digit78.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno NOT LIKE '78%'",
+    "solution": "SELECT * FROM emp WHERE empno NOT LIKE '78%';",
+    "xp": 105
+  },
+  {
+    "id": 33,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are working under 'MGR'.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT e.ename || ' works for ' || m.ename FROM emp e ,emp m WHERE e.mgr = m.empno",
+    "solution": "SELECT e.ename || ' works for ' || m.ename FROM emp e ,emp m WHERE e.mgr = m.empno;",
+    "xp": 80
+  },
+  {
+    "id": 34,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined in any year but not belongs to the month of March.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'MON') NOT IN ('MAR')",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'MON') NOT IN ('MAR');",
+    "xp": 75
+  },
+  {
+    "id": 35,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List all the Clerks of Deptno 20.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job ='CLERK' AND deptno = 20",
+    "solution": "SELECT * FROM emp WHERE job ='CLERK' AND deptno = 20;",
+    "xp": 70
+  },
+  {
+    "id": 36,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps of Deptno 30 or 10 joined in the year 1981.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981' AND (deptno =30 OR deptno =10)",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981' AND (deptno =30 OR deptno =10);",
+    "xp": 85
+  },
+  {
+    "id": 37,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display the details of SMITH.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename = 'SMITH'",
+    "solution": "SELECT * FROM emp WHERE ename = 'SMITH';",
+    "xp": 65
+  },
+  {
+    "id": 38,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the location of SMITH.",
+    "hint": "Use JOIN emp with dept.",
+    "expectedQuery": "SELECT loc FROM emp e , dept d WHERE e.ename = 'SMITH' AND e.deptno = d.deptno",
+    "solution": "SELECT loc FROM emp e , dept d WHERE e.ename = 'SMITH' AND e.deptno = d.deptno;",
+    "xp": 110
+  },
+  {
+    "id": 39,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the total information of EMP table along with DNAME and Loc of all the emps Working Under 'ACCOUNTING' & 'RESEARCH' in the asc Deptno.",
+    "hint": "Use JOIN emp with dept, ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp e ,dept d WHERE (dname = 'ACCOUNTING' OR dname ='RESEARCH' ) AND e.deptno = d.deptno ORDER BY e.deptno ASC",
+    "solution": "SELECT * FROM emp e ,dept d WHERE (dname = 'ACCOUNTING' OR dname ='RESEARCH' ) AND e.deptno = d.deptno ORDER BY e.deptno ASC;",
+    "xp": 110
+  },
+  {
+    "id": 40,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the Empno, Ename, Sal, Dname of all the 'MGRS' and 'ANALYST' working in New York, Dallas with an exp more than 7 years without receiving the Comm asc order of Loc.",
+    "hint": "Use a subquery, JOIN emp with dept, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.sal,d.dname FROM emp e ,dept d WHERE d.loc IN ('NEW YORK','DALLAS') AND e.deptno = d.deptno AND e.empno IN (SELECT e.empno FROM emp e WHERE e.job IN ('MANAGER','ANALYST') AND (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12)> 7 AND e.comm. IS NULL) ORDER BY d.loc ASC",
+    "solution": "SELECT e.empno,e.ename,e.sal,d.dname FROM emp e ,dept d WHERE d.loc IN ('NEW YORK','DALLAS') AND e.deptno = d.deptno AND e.empno IN (SELECT e.empno FROM emp e WHERE e.job IN ('MANAGER','ANALYST') AND (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12)> 7 AND e.comm. IS NULL) ORDER BY d.loc ASC;",
+    "xp": 210
+  },
+  {
+    "id": 41,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "Display the Empno, Ename, Sal, Dname, Loc, Deptno, Job of all emps working at CJICAGO or working for ACCOUNTING dept with Ann Sal>28000, but the Sal should not be=3000 or 2800 who doesn't belongs to the Mgr and whose no is having a digit '7' or '8' in 3rd position in the asc order of Deptno and desc order of job.",
+    "hint": "Use a subquery, JOIN emp with dept, LIKE for pattern matching, ORDER BY.",
+    "expectedQuery": "SELECT E.empno,E.ename,E.sal,D.dname,D.loc,E.deptno,E.job FROM emp E,dept D WHERE (D.loc = 'CHICAGO' OR D.dname = 'ACCOUNTING') AND E.deptno=D.deptno AND E.empno IN (SELECT E.empno FROM emp E WHERE (12*E.sal) > 28000 AND E.sal NOT IN (3000,2800) AND E.job !='MANAGER' AND ( E.empno LIKE '__7%' OR E.empno LIKE '__8%')) ORDER BY E.deptno ASC , E.job DESC",
+    "solution": "SELECT E.empno,E.ename,E.sal,D.dname,D.loc,E.deptno,E.job FROM emp E,dept D WHERE (D.loc = 'CHICAGO' OR D.dname = 'ACCOUNTING') AND E.deptno=D.deptno AND E.empno IN (SELECT E.empno FROM emp E WHERE (12*E.sal) > 28000 AND E.sal NOT IN (3000,2800) AND E.job !='MANAGER' AND ( E.empno LIKE '__7%' OR E.empno LIKE '__8%')) ORDER BY E.deptno ASC , E.job DESC;",
+    "xp": 210
+  },
+  {
+    "id": 42,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the total information of the emps along with Grades in the asc order.",
+    "hint": "Use the salgrade table, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal ORDER BY grade ASC",
+    "solution": "SELECT * FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal ORDER BY grade ASC;",
+    "xp": 110
+  },
+  {
+    "id": 43,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List all the Grade2 and Grade 3 emps.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp e WHERE e.empno IN (SELECT e.empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN(2,3))",
+    "solution": "SELECT * FROM emp e WHERE e.empno IN (SELECT e.empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN(2,3));",
+    "xp": 160
+  },
+  {
+    "id": 44,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Display all Grade 4,5 Analyst and Mgr.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp e, salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (4,5) AND e.empno IN (SELECT e.empno FROM emp e WHERE e.job IN ('MANAGER','ANALYST') )",
+    "solution": "SELECT * FROM emp e, salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (4,5) AND e.empno IN (SELECT e.empno FROM emp e WHERE e.job IN ('MANAGER','ANALYST') );",
+    "xp": 160
+  },
+  {
+    "id": 45,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the Empno, Ename, Sal, Dname, Grade, Exp, and Ann Sal of emps working for Dept10 or20.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN.",
+    "expectedQuery": "selectE.empno,E.ename,E.sal,S.grade,D.dname, (MONTHS_BETWEEN(SYSDATE,E.hiredate)/12) \"EXP\" ,12*E.sal \"ANN SAL\" FROM emp E,dept D ,salgrade S WHERE E.deptno IN (10,20) AND E.deptno = D.deptno AND E.sal BETWEEN S.losal AND S.hisal",
+    "solution": "selectE.empno,E.ename,E.sal,S.grade,D.dname, (MONTHS_BETWEEN(SYSDATE,E.hiredate)/12) \"EXP\" ,12*E.sal \"ANN SAL\" FROM emp E,dept D ,salgrade S WHERE E.deptno IN (10,20) AND E.deptno = D.deptno AND E.sal BETWEEN S.losal AND S.hisal;",
+    "xp": 160
+  },
+  {
+    "id": 46,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List all the information of emp with Loc and the Grade of all the emps belong to the Grade range from 2 to 4 working at the Dept those are not starting with char set 'OP' and not ending with 'S' with the designation having a char 'a' any where joined in the year 1981 but not in the month of Mar or Sep and Sal not end with '00' in the asc order of Grades.",
+    "hint": "Use a subquery, JOIN emp with dept, the salgrade table, LIKE for pattern matching, BETWEEN.",
+    "expectedQuery": "SELECT e.empno,e.ename,d.loc,s.grade,e.sal FROM emp e ,dept d,salgrade s WHERE e.deptno = d.deptno AND (d.dname NOT LIKE 'OP%' AND d.dname NOT LIKE '%S') AND e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (2,3,4) AND empno IN (SELECT empno FROM emp WHERE job LIKE '%A%'AND sal NOT LIKE '%00' AND (TO_CHAR (hiredate,'YYYY') = '1981' AND TO_CHAR(hiredate,'MON') NOT IN ('MAR','SEP')))",
+    "solution": "SELECT e.empno,e.ename,d.loc,s.grade,e.sal FROM emp e ,dept d,salgrade s WHERE e.deptno = d.deptno AND (d.dname NOT LIKE 'OP%' AND d.dname NOT LIKE '%S') AND e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (2,3,4) AND empno IN (SELECT empno FROM emp WHERE job LIKE '%A%'AND sal NOT LIKE '%00' AND (TO_CHAR (hiredate,'YYYY') = '1981' AND TO_CHAR(hiredate,'MON') NOT IN ('MAR','SEP')));",
+    "xp": 210
+  },
+  {
+    "id": 47,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the details of the Depts along with Empno, Ename or without the emps.",
+    "hint": "Use JOIN emp with dept.",
+    "expectedQuery": "SELECT * FROM emp e,dept d WHERE e.deptno(+)= d.deptno",
+    "solution": "SELECT * FROM emp e,dept d WHERE e.deptno(+)= d.deptno;",
+    "xp": 110
+  },
+  {
+    "id": 48,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the details of the emps whose Salaries more than the employee BLAKE.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal > (SELECT sal FROM emp WHERE ename = 'BLAKE')",
+    "solution": "SELECT * FROM emp WHERE sal > (SELECT sal FROM emp WHERE ename = 'BLAKE');",
+    "xp": 110
+  },
+  {
+    "id": 49,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose Jobs are same as ALLEN.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'ALLEN')",
+    "solution": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'ALLEN');",
+    "xp": 110
+  },
+  {
+    "id": 50,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who are senior to King.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate < ( SELECT hiredate FROM emp WHERE ename = 'KING')",
+    "solution": "SELECT * FROM emp WHERE hiredate < ( SELECT hiredate FROM emp WHERE ename = 'KING');",
+    "xp": 110
+  },
+  {
+    "id": 51,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Emps who are senior to their own MGRS.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate < m.hiredate",
+    "solution": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate < m.hiredate;",
+    "xp": 110
+  },
+  {
+    "id": 52,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the Emps of Deptno 20 whose Jobs are same as Deptno10.",
+    "hint": "Use a subquery, JOIN emp with dept.",
+    "expectedQuery": "SELECT * FROM emp e ,dept d WHERE d.deptno = 20 AND e.deptno = d.deptno AND e.job IN ( SELECT e.job FROM emp e,dept d WHERE e.deptno = d.deptno AND d.deptno =10)",
+    "solution": "SELECT * FROM emp e ,dept d WHERE d.deptno = 20 AND e.deptno = d.deptno AND e.job IN ( SELECT e.job FROM emp e,dept d WHERE e.deptno = d.deptno AND d.deptno =10);",
+    "xp": 160
+  },
+  {
+    "id": 53,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Emps whose Sal is same as FORD or SMITH in desc order of Sal.",
+    "hint": "Use a subquery, ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp WHERE ( ename = 'SMITH' OR ename = 'FORD' )) ORDER BY sal DESC",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp WHERE ( ename = 'SMITH' OR ename = 'FORD' )) ORDER BY sal DESC;",
+    "xp": 110
+  },
+  {
+    "id": 54,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the emps Whose Jobs are same as MILLER or Sal is more than ALLEN.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'MILLER' ) OR sal>(SELECT sal FROM emp WHERE ename = 'ALLEN')",
+    "solution": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'MILLER' ) OR sal>(SELECT sal FROM emp WHERE ename = 'ALLEN');",
+    "xp": 160
+  },
+  {
+    "id": 55,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Emps whose Sal is > the total remuneration of the SALESMAN.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal >(SELECT SUM(NVL2(comm,sal+comm,sal)) FROM emp WHERE job = 'SALESMAN')",
+    "solution": "SELECT * FROM emp WHERE sal >(SELECT SUM(NVL2(comm,sal+comm,sal)) FROM emp WHERE job = 'SALESMAN');",
+    "xp": 110
+  },
+  {
+    "id": 56,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the emps who are senior to BLAKE working at CHICAGO & BOSTON.",
+    "hint": "Use a subquery, JOIN emp with dept.",
+    "expectedQuery": "SELECT * FROM emp e ,dept d WHERE d.loc IN ('CHICAGO','BOSTON') AND e.deptno = d.deptno AND e.hiredate <(SELECT e.hiredate FROM emp e WHERE e.ename = 'BLAKE')",
+    "solution": "SELECT * FROM emp e ,dept d WHERE d.loc IN ('CHICAGO','BOSTON') AND e.deptno = d.deptno AND e.hiredate <(SELECT e.hiredate FROM emp e WHERE e.ename = 'BLAKE');",
+    "xp": 160
+  },
+  {
+    "id": 57,
+    "level": 5,
+    "levelTitle": "Level 5: SQL Grandmaster",
+    "question": "List the Emps of Grade 3,4 belongs to the dept ACCOUNTING and RESEARCH whose Sal is more than ALLEN and exp more than SMITH in the asc order of EXP.",
+    "hint": "Use nested subqueries, JOIN emp with dept, the salgrade table, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp e WHERE e.deptno IN (SELECT d.deptno FROM dept d WHERE d.dname IN ('ACCOUNTING','RESEARCH') ) AND e.sal >(SELECT sal FROM emp WHERE ename = 'ALLEN') AND e.hiredate <( SELECT hiredate FROM emp WHERE ename = 'SMITH') AND e.empno IN (SELECT e.empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,4) ) ORDER BY e.hiredate DESC",
+    "solution": "SELECT * FROM emp e WHERE e.deptno IN (SELECT d.deptno FROM dept d WHERE d.dname IN ('ACCOUNTING','RESEARCH') ) AND e.sal >(SELECT sal FROM emp WHERE ename = 'ALLEN') AND e.hiredate <( SELECT hiredate FROM emp WHERE ename = 'SMITH') AND e.empno IN (SELECT e.empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,4) ) ORDER BY e.hiredate DESC;",
+    "xp": 280
+  },
+  {
+    "id": 58,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose jobs same as SMITH or ALLEN.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE job IN (SELECT job FROM emp WHERE ename = 'SMITH' OR ename = 'ALLEN')",
+    "solution": "SELECT * FROM emp WHERE job IN (SELECT job FROM emp WHERE ename = 'SMITH' OR ename = 'ALLEN');",
+    "xp": 110
+  },
+  {
+    "id": 59,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Write a query to display the details of employees whose Sal is the same as the Sal of any employee in the EMP1 table (a second, similarly structured emp table).",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp1)",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp1);",
+    "xp": 110
+  },
+  {
+    "id": 60,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Any jobs of deptno 10 those that are not found in deptno 20.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT e.job FROM emp e WHERE e.deptno = 10 AND e.job NOT IN (SELECT job FROM emp WHERE deptno =20)",
+    "solution": "SELECT e.job FROM emp e WHERE e.deptno = 10 AND e.job NOT IN (SELECT job FROM emp WHERE deptno =20);",
+    "xp": 110
+  },
+  {
+    "id": 61,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the employees of EMP1 table who are not found in EMP2 table.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp1 WHERE empno NOT IN (SELECT empno FROM emp2)",
+    "solution": "SELECT * FROM emp1 WHERE empno NOT IN (SELECT empno FROM emp2);",
+    "xp": 110
+  },
+  {
+    "id": 62,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Find the highest sal of EMP table.",
+    "hint": "Use an aggregate function.",
+    "expectedQuery": "SELECT MAX(sal) FROM emp",
+    "solution": "SELECT MAX(sal) FROM emp;",
+    "xp": 60
+  },
+  {
+    "id": 63,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find details of highest paid employee.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp)",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 64,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Find the highest paid employee of sales department.",
+    "hint": "Use nested subqueries, JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp WHERE deptno IN (SELECT d.deptno FROM dept d WHERE d.dname = 'SALES'))",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp WHERE deptno IN (SELECT d.deptno FROM dept d WHERE d.dname = 'SALES'));",
+    "xp": 160
+  },
+  {
+    "id": 65,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the most recently hired emp of grade3 belongs to location CHICAGO.",
+    "hint": "Use nested subqueries, JOIN emp with dept, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp e WHERE e.deptno IN ( SELECT d.deptno FROM dept d WHERE d.loc = 'CHICAGO') AND e.hiredate IN (SELECT MAX(hiredate) FROM emp WHERE empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 3))",
+    "solution": "SELECT * FROM emp e WHERE e.deptno IN ( SELECT d.deptno FROM dept d WHERE d.loc = 'CHICAGO') AND e.hiredate IN (SELECT MAX(hiredate) FROM emp WHERE empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 3));",
+    "xp": 210
+  },
+  {
+    "id": 66,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the employees who are senior to most recently hired employee working under king.",
+    "hint": "Use nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate < (SELECT MAX(hiredate) FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'KING'))",
+    "solution": "SELECT * FROM emp WHERE hiredate < (SELECT MAX(hiredate) FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'KING'));",
+    "xp": 160
+  },
+  {
+    "id": 67,
+    "level": 5,
+    "levelTitle": "Level 5: SQL Grandmaster",
+    "question": "List the details of the employee belongs to newyork with grade 3 to 5 except 'PRESIDENT' whose sal> the highest paid employee of Chicago in a group where there is manager and salesman not working under king.",
+    "hint": "Use nested subqueries, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc ='NEW YORK') AND empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,4,5) ) AND job != 'PRESIDENT' AND sal >(SELECT MAX(sal) FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc = 'CHICAGO') AND job IN ('MANAGER','SALESMAN') AND mgr NOT IN (SELECT empno FROM emp WHERE ename = 'KING'))",
+    "solution": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc ='NEW YORK') AND empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,4,5) ) AND job != 'PRESIDENT' AND sal >(SELECT MAX(sal) FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc = 'CHICAGO') AND job IN ('MANAGER','SALESMAN') AND mgr NOT IN (SELECT empno FROM emp WHERE ename = 'KING'));",
+    "xp": 280
+  },
+  {
+    "id": 68,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the details of the senior employee belongs to 1981.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE TO_CHAR( hiredate,'YYYY') = '1981')",
+    "solution": "SELECT * FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE TO_CHAR( hiredate,'YYYY') = '1981');",
+    "xp": 110
+  },
+  {
+    "id": 69,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the employees who joined in 1981 with the job same as the most senior person of the year 1981.",
+    "hint": "Use nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE job IN (SELECT job FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE TO_CHAR(hiredate,'YYYY') ='1981'))",
+    "solution": "SELECT * FROM emp WHERE job IN (SELECT job FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE TO_CHAR(hiredate,'YYYY') ='1981'));",
+    "xp": 160
+  },
+  {
+    "id": 70,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the most senior empl working under the king and grade is more than 3.",
+    "hint": "Use nested subqueries, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE empno IN (SELECT empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (4,5))) AND mgr IN (SELECT empno FROM emp WHERE ename = 'KING')",
+    "solution": "SELECT * FROM emp WHERE hiredate IN (SELECT MIN(hiredate) FROM emp WHERE empno IN (SELECT empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (4,5))) AND mgr IN (SELECT empno FROM emp WHERE ename = 'KING');",
+    "xp": 210
+  },
+  {
+    "id": 71,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Find the total sal given to the MGR.",
+    "hint": "Use an aggregate function.",
+    "expectedQuery": "SELECT SUM (sal) FROM emp WHERE job = 'MANAGER'",
+    "solution": "SELECT SUM (sal) FROM emp WHERE job = 'MANAGER';",
+    "xp": 65
+  },
+  {
+    "id": 72,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find the total annual sal to distribute job wise in the year 81.",
+    "hint": "Use GROUP BY, an aggregate function.",
+    "expectedQuery": "SELECT job,SUM(12*sal) FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981' GROUP BY job",
+    "solution": "SELECT job,SUM(12*sal) FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981' GROUP BY job;",
+    "xp": 110
+  },
+  {
+    "id": 73,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Display total sal employee belonging to grade 3.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT SUM(sal) FROM emp WHERE empno IN (SELECT empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 3)",
+    "solution": "SELECT SUM(sal) FROM emp WHERE empno IN (SELECT empno FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 3);",
+    "xp": 160
+  },
+  {
+    "id": 74,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display the average salaries of all the clerks.",
+    "hint": "Use an aggregate function.",
+    "expectedQuery": "SELECT AVG(sal) FROM emp WHERE job = 'CLERK'",
+    "solution": "SELECT AVG(sal) FROM emp WHERE job = 'CLERK';",
+    "xp": 65
+  },
+  {
+    "id": 75,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the employeein dept 20 whose sal is >the average sal 0f dept 10 emps.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno =20 AND sal >(SELECT AVG (sal) FROM emp WHERE deptno = 10)",
+    "solution": "SELECT * FROM emp WHERE deptno =20 AND sal >(SELECT AVG (sal) FROM emp WHERE deptno = 10);",
+    "xp": 110
+  },
+  {
+    "id": 76,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the number of employee for each job group deptno wise.",
+    "hint": "Use GROUP BY, an aggregate function.",
+    "expectedQuery": "SELECT deptno ,job ,COUNT(*) FROM emp GROUP BY deptno,job",
+    "solution": "SELECT deptno ,job ,COUNT(*) FROM emp GROUP BY deptno,job;",
+    "xp": 110
+  },
+  {
+    "id": 77,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the manage rno and the number of employees working for those mgrs in the ascending Mgrno.",
+    "hint": "Use GROUP BY, a self-join on emp (worker/manager aliases), ORDER BY, an aggregate function.",
+    "expectedQuery": "SELECT w.mgr ,COUNT(*) FROM emp w,emp m WHERE w.mgr = m.empno GROUP BY w.mgr ORDER BY w.mgr ASC",
+    "solution": "SELECT w.mgr ,COUNT(*) FROM emp w,emp m WHERE w.mgr = m.empno GROUP BY w.mgr ORDER BY w.mgr ASC;",
+    "xp": 145
+  },
+  {
+    "id": 78,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the department,details where at least two emps are working.",
+    "hint": "Use GROUP BY ... HAVING ..., an aggregate function.",
+    "expectedQuery": "SELECT deptno ,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) >= 2",
+    "solution": "SELECT deptno ,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) >= 2;",
+    "xp": 135
+  },
+  {
+    "id": 79,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Display the Grade, Number of emps, and max sal of each grade.",
+    "hint": "Use GROUP BY, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT s.grade ,COUNT(*),MAX(sal) FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal GROUP BY s.grade",
+    "solution": "SELECT s.grade ,COUNT(*),MAX(sal) FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal GROUP BY s.grade;",
+    "xp": 155
+  },
+  {
+    "id": 80,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "Display dname, grade, No. of emps where at least two emps are clerks.",
+    "hint": "Use GROUP BY ... HAVING ..., JOIN emp with dept, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT d.dname,s.grade,COUNT(*) FROM emp e,dept d,salgrade s WHERE e.deptno = d.deptno AND e.job = 'CLERK' AND e.sal BETWEEN s.losal AND s.hisal GROUP BY d.dname,s.grade HAVING COUNT(*) >= 2",
+    "solution": "SELECT d.dname,s.grade,COUNT(*) FROM emp e,dept d,salgrade s WHERE e.deptno = d.deptno AND e.job = 'CLERK' AND e.sal BETWEEN s.losal AND s.hisal GROUP BY d.dname,s.grade HAVING COUNT(*) >= 2;",
+    "xp": 210
+  },
+  {
+    "id": 81,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the details of the department where maximum number of emps are working.",
+    "hint": "Use GROUP BY ... HAVING ..., nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM dept WHERE deptno IN (SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) IN (SELECT MAX(COUNT(*)) FROM emp GROUP BY deptno) )",
+    "solution": "SELECT * FROM dept WHERE deptno IN (SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) IN (SELECT MAX(COUNT(*)) FROM emp GROUP BY deptno) );",
+    "xp": 205
+  },
+  {
+    "id": 82,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the emps whose manager name is jones.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'JONES')",
+    "solution": "SELECT * FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'JONES');",
+    "xp": 110
+  },
+  {
+    "id": 83,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the employees whose salary is more than 3000 after giving 20% increment.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM EMP WHERE (1.2*SAL) > 3000",
+    "solution": "SELECT * FROM EMP WHERE (1.2*SAL) > 3000;",
+    "xp": 65
+  },
+  {
+    "id": 84,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps with dept names.",
+    "hint": "Use JOIN emp with dept.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.job,e.mgr,e.hiredate,e.sal,e.comm,e.deptno,d.dname FROM emp e ,dept d WHERE e.deptno = d.deptno",
+    "solution": "SELECT e.empno,e.ename,e.job,e.mgr,e.hiredate,e.sal,e.comm,e.deptno,d.dname FROM emp e ,dept d WHERE e.deptno = d.deptno;",
+    "xp": 110
+  },
+  {
+    "id": 85,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who are not working in sales dept.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno NOT IN (SELECT deptno FROM emp WHERE dname = 'SALES')",
+    "solution": "SELECT * FROM emp WHERE deptno NOT IN (SELECT deptno FROM emp WHERE dname = 'SALES');",
+    "xp": 110
+  },
+  {
+    "id": 86,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps name ,dept, sal and comm. For those whose salary is between 2000 and 5000 while loc is Chicago.",
+    "hint": "Use JOIN emp with dept, BETWEEN.",
+    "expectedQuery": "SELECT e.ename,e.deptno,e.sal,e.comm FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc = 'CHICAGO' AND e.sal BETWEEN 2000 AND 5000",
+    "solution": "SELECT e.ename,e.deptno,e.sal,e.comm FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc = 'CHICAGO' AND e.sal BETWEEN 2000 AND 5000;",
+    "xp": 110
+  },
+  {
+    "id": 87,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal is greater than his managers salary.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal > m.sal",
+    "solution": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal > m.sal;",
+    "xp": 110
+  },
+  {
+    "id": 88,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the grade, EMP name for the deptno 10 or deptno 30 but sal grade is not 4 while they joined the company before '31-dec-82'.",
+    "hint": "Use the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT s.grade ,e.ename FROM emp e,salgrade s WHERE e.deptno IN (10,20) AND hiredate < ('31-DEC-82') AND (e.sal BETWEEN s.losal AND s.hisal AND s.grade NOT IN (4))",
+    "solution": "SELECT s.grade ,e.ename FROM emp e,salgrade s WHERE e.deptno IN (10,20) AND hiredate < ('31-DEC-82') AND (e.sal BETWEEN s.losal AND s.hisal AND s.grade NOT IN (4));",
+    "xp": 160
+  },
+  {
+    "id": 89,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the name ,job, dname, location for those who are working as MGRS.",
+    "hint": "Use a subquery, JOIN emp with dept.",
+    "expectedQuery": "SELECT e.ename,e.job,d.dname,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND e.empno IN (SELECT mgr FROM emp )",
+    "solution": "SELECT e.ename,e.job,d.dname,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND e.empno IN (SELECT mgr FROM emp );",
+    "xp": 155
+  },
+  {
+    "id": 90,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps whose mgr name is jones and also list their manager name.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT w.empno,w.ename,w.job,w.mgr,w.hiredate,w.sal,w.deptno,m.ename FROM emp w ,emp m WHERE w.mgr = m.empno AND m.ename = 'JONES'",
+    "solution": "SELECT w.empno,w.ename,w.job,w.mgr,w.hiredate,w.sal,w.deptno,m.ename FROM emp w ,emp m WHERE w.mgr = m.empno AND m.ename = 'JONES';",
+    "xp": 90
+  },
+  {
+    "id": 91,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the name and salary of ford if his salary is equal to hisal of his grade.",
+    "hint": "Use the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT e.ename,e.sal FROM emp e ,salgrade s WHERE e.ename = 'FORD' AND e.sal BETWEEN s.losal AND s.hisal AND e.sal = s.hisal",
+    "solution": "SELECT e.ename,e.sal FROM emp e ,salgrade s WHERE e.ename = 'FORD' AND e.sal BETWEEN s.losal AND s.hisal AND e.sal = s.hisal;",
+    "xp": 110
+  },
+  {
+    "id": 92,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Lit the name, job, dname ,sal, grade dept wise.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT e.ename,e.job,d.dname,e.sal,s.grade FROM emp e,dept d,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal ORDER BY e.deptno",
+    "solution": "SELECT e.ename,e.job,d.dname,e.sal,s.grade FROM emp e,dept d,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal ORDER BY e.deptno;",
+    "xp": 110
+  },
+  {
+    "id": 93,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emp name, job, sal, grade and dname except clerks and sort on the basis of highest sal.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT e.ename,e.job,e.sal,s.grade,d.dname FROM emp e ,dept d ,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND e.job NOT IN('CLERK') ORDER BY e.sal DESC",
+    "solution": "SELECT e.ename,e.job,e.sal,s.grade,d.dname FROM emp e ,dept d ,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND e.job NOT IN('CLERK') ORDER BY e.sal DESC;",
+    "xp": 110
+  },
+  {
+    "id": 94,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps name, job who are with out manager.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT e.ename,e.job FROM emp e WHERE mgr IS NULL",
+    "solution": "SELECT e.ename,e.job FROM emp e WHERE mgr IS NULL;",
+    "xp": 70
+  },
+  {
+    "id": 95,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the names of the emps who are getting the highest sal dept wise.",
+    "hint": "Use GROUP BY, a subquery, an aggregate function.",
+    "expectedQuery": "SELECT e.ename,e.deptno FROM emp e WHERE e.sal IN (SELECT MAX(sal) FROM emp GROUP BY deptno)",
+    "solution": "SELECT e.ename,e.deptno FROM emp e WHERE e.sal IN (SELECT MAX(sal) FROM emp GROUP BY deptno);",
+    "xp": 145
+  },
+  {
+    "id": 96,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal is equal to the average of max and minimum.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal =(SELECT (MAX(sal)+MIN(sal))/2 FROM emp)",
+    "solution": "SELECT * FROM emp WHERE sal =(SELECT (MAX(sal)+MIN(sal))/2 FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 97,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the no. of emps in each department where the no. is more than 3.",
+    "hint": "Use GROUP BY ... HAVING ..., an aggregate function.",
+    "expectedQuery": "SELECT deptno,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) < 3",
+    "solution": "SELECT deptno,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) < 3;",
+    "xp": 135
+  },
+  {
+    "id": 98,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the names of depts. Where atleast 3 are working in that department.",
+    "hint": "Use GROUP BY ... HAVING ..., JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT d.dname,COUNT(*) FROM emp e ,dept d WHERE e.deptno = d.deptno GROUP BY d.dname HAVING COUNT(*) >= 3",
+    "solution": "SELECT d.dname,COUNT(*) FROM emp e ,dept d WHERE e.deptno = d.deptno GROUP BY d.dname HAVING COUNT(*) >= 3;",
+    "xp": 190
+  },
+  {
+    "id": 99,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the managers whose sal is more than his employess avg salary.",
+    "hint": "Use nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp m WHERE m.empno IN (SELECT mgr FROM emp) AND m.sal > (SELECT AVG(e.sal) FROM emp e WHERE e.mgr = m.empno)",
+    "solution": "SELECT * FROM emp m WHERE m.empno IN (SELECT mgr FROM emp) AND m.sal > (SELECT AVG(e.sal) FROM emp e WHERE e.mgr = m.empno);",
+    "xp": 160
+  },
+  {
+    "id": 100,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the name,salary,comm. For those employees whose net pay is greater than or equal to any other employee salary of the company.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT e.ename,e.sal,e.comm FROM emp e WHERE NVL2(e.comm.,e.sal+e.comm.,e.sal) >= ANY (SELECT sal FROM emp)",
+    "solution": "SELECT e.ename,e.sal,e.comm FROM emp e WHERE NVL2(e.comm.,e.sal+e.comm.,e.sal) >= ANY (SELECT sal FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 101,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the emp whose sal<his manager but more than any other manager.",
+    "hint": "Use nested subqueries, a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w, emp m WHERE w.mgr = m.empno AND w.sal < m.sal AND w.sal > ANY (SELECT sal FROM emp WHERE empno IN (SELECT mgr FROM emp))",
+    "solution": "SELECT * FROM emp w, emp m WHERE w.mgr = m.empno AND w.sal < m.sal AND w.sal > ANY (SELECT sal FROM emp WHERE empno IN (SELECT mgr FROM emp));",
+    "xp": 205
+  },
+  {
+    "id": 102,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the employee names and his average salary department wise.",
+    "hint": "Use GROUP BY, JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT d.deptno, ROUND(AVG(NVL2(e1.comm, e1.sal+e1.comm, e1.sal))) AVG, e2.ename FROM emp e1, emp e2, dept d WHERE d.deptno =e1.deptno AND d.deptno = e2.deptno GROUP BY d.deptno, e2.ename",
+    "solution": "SELECT d.deptno, ROUND(AVG(NVL2(e1.comm, e1.sal+e1.comm, e1.sal))) AVG, e2.ename FROM emp e1, emp e2, dept d WHERE d.deptno =e1.deptno AND d.deptno = e2.deptno GROUP BY d.deptno, e2.ename;",
+    "xp": 160
+  },
+  {
+    "id": 103,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out least 5 earners of the company.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp e WHERE 5> (SELECT COUNT(*) FROM emp WHERE e.sal >sal)",
+    "solution": "SELECT * FROM emp e WHERE 5> (SELECT COUNT(*) FROM emp WHERE e.sal >sal);",
+    "xp": 110
+  },
+  {
+    "id": 104,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out emps whose salaries greater than salaries of their managers.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal> m.sal",
+    "solution": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal> m.sal;",
+    "xp": 110
+  },
+  {
+    "id": 105,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the managers who are not working under the president.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno IN(SELECT mgr FROM emp) AND mgr NOT IN (SELECT empno FROM emp WHERE job = 'PRESIDENT')",
+    "solution": "SELECT * FROM emp WHERE empno IN(SELECT mgr FROM emp) AND mgr NOT IN (SELECT empno FROM emp WHERE job = 'PRESIDENT');",
+    "xp": 155
+  },
+  {
+    "id": 106,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the records from EMP whose Deptno is not present in DEPT.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno NOT IN (SELECT deptno FROM dept)",
+    "solution": "SELECT * FROM emp WHERE deptno NOT IN (SELECT deptno FROM dept);",
+    "xp": 110
+  },
+  {
+    "id": 107,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Name , Salary, Comm and Net Pay is more than any other employee.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT e.ename,e.sal,e.comm,NVL2(comm,sal+comm,sal) NETPAY FROM emp e WHERE NVL2(comm,sal+comm,sal) > ANY (SELECT sal FROM emp WHERE empno =e.empno)",
+    "solution": "SELECT e.ename,e.sal,e.comm,NVL2(comm,sal+comm,sal) NETPAY FROM emp e WHERE NVL2(comm,sal+comm,sal) > ANY (SELECT sal FROM emp WHERE empno =e.empno);",
+    "xp": 110
+  },
+  {
+    "id": 108,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the Enames who are retiring after 31-Dec-89 the max Job period is 20Y.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT ename FROM emp WHERE ADD_MONTHS(hiredate,240) > '31-DEC-89'",
+    "solution": "SELECT ename FROM emp WHERE ADD_MONTHS(hiredate,240) > '31-DEC-89';",
+    "xp": 75
+  },
+  {
+    "id": 109,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List those Emps whose Salary is odd value.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE MOD(sal,2) = 1",
+    "solution": "SELECT * FROM emp WHERE MOD(sal,2) = 1;",
+    "xp": 65
+  },
+  {
+    "id": 110,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp's whose Salary contain 3 digits.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH (sal) = 3",
+    "solution": "SELECT * FROM emp WHERE LENGTH (sal) = 3;",
+    "xp": 65
+  },
+  {
+    "id": 111,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined in the month of DEC.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') ='DEC'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') ='DEC';",
+    "xp": 70
+  },
+  {
+    "id": 112,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose names contains 'A'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename LIKE '%A%'",
+    "solution": "SELECT * FROM emp WHERE ename LIKE '%A%';",
+    "xp": 105
+  },
+  {
+    "id": 113,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose Deptno is available in his Salary.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE INSTR(sal,deptno) > 0",
+    "solution": "SELECT * FROM emp WHERE INSTR(sal,deptno) > 0;",
+    "xp": 105
+  },
+  {
+    "id": 114,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose first 2 chars from Hiredate=last 2 characters of Salary.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE SUBSTR(hiredate,1,2) = SUBSTR(sal,LENGTH(sal)-1,LENGTH(sal))",
+    "solution": "SELECT * FROM emp WHERE SUBSTR(hiredate,1,2) = SUBSTR(sal,LENGTH(sal)-1,LENGTH(sal));",
+    "xp": 110
+  },
+  {
+    "id": 115,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps Whose 10% of Salary is equal to year of joining.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') IN (SELECT .1*sal FROM emp)",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') IN (SELECT .1*sal FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 116,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List first 50% of chars of Ename in Lower Case and remaining are upper Case.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT lower(SUBSTR(ename,1,ROUND(LENGTH(ename)/2))) ||SUBSTR(ename,ROUND(LENGTH(ename)/2)+1,LENGTH(ename)) FROM emp",
+    "solution": "SELECT lower(SUBSTR(ename,1,ROUND(LENGTH(ename)/2))) ||SUBSTR(ename,ROUND(LENGTH(ename)/2)+1,LENGTH(ename)) FROM emp;",
+    "xp": 110
+  },
+  {
+    "id": 117,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Dname whose No. of Emps is =to number of chars in the Dname.",
+    "hint": "Use a subquery, JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT * FROM dept d WHERE LENGTH(dname) IN (SELECT COUNT(*) FROM emp e WHERE e.deptno = d.deptno )",
+    "solution": "SELECT * FROM dept d WHERE LENGTH(dname) IN (SELECT COUNT(*) FROM emp e WHERE e.deptno = d.deptno );",
+    "xp": 110
+  },
+  {
+    "id": 118,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps those who joined in company before 15th of the month.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'DD') < '15'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'DD') < '15';",
+    "xp": 70
+  },
+  {
+    "id": 119,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the Dname, no of chars of which is = no. of emp's in any other Dept.",
+    "hint": "Use GROUP BY, a subquery, JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT * FROM dept d WHERE LENGTH(dname) IN (SELECT COUNT(*) FROM emp WHERE d.deptno <> deptno GROUP BY deptno )",
+    "solution": "SELECT * FROM dept d WHERE LENGTH(dname) IN (SELECT COUNT(*) FROM emp WHERE d.deptno <> deptno GROUP BY deptno );",
+    "xp": 155
+  },
+  {
+    "id": 120,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are working as Managers.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM WHERE job = 'MANAGER'",
+    "solution": "SELECT * FROM WHERE job = 'MANAGER';",
+    "xp": 60
+  },
+  {
+    "id": 121,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List THE Name of dept where highest no.of emps are working.",
+    "hint": "Use GROUP BY ... HAVING ..., nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT dname FROM dept WHERE deptno IN (SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) IN (SELECT MAX(COUNT(*)) FROM emp GROUP BY deptno) )",
+    "solution": "SELECT dname FROM dept WHERE deptno IN (SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) IN (SELECT MAX(COUNT(*)) FROM emp GROUP BY deptno) );",
+    "xp": 210
+  },
+  {
+    "id": 122,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Count the No.of emps who are working as 'Managers'(using set option).",
+    "hint": "Use nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT COUNT(*) FROM(SELECT * FROM emp MINUS SELECT * FROM emp WHERE job != 'MANAGER')",
+    "solution": "SELECT COUNT(*) FROM(SELECT * FROM emp MINUS SELECT * FROM emp WHERE job != 'MANAGER');",
+    "xp": 145
+  },
+  {
+    "id": 123,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who joined in the company on the same date.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp e WHERE hiredate IN (SELECT hiredate FROM emp WHERE e.empno <> empno)",
+    "solution": "SELECT * FROM emp e WHERE hiredate IN (SELECT hiredate FROM emp WHERE e.empno <> empno);",
+    "xp": 110
+  },
+  {
+    "id": 124,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the details of the emps whose Grade is equal to one tenth of Sales Dept.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 0.1* (SELECT deptno FROM dept WHERE dname = 'SALES')",
+    "solution": "SELECT * FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 0.1* (SELECT deptno FROM dept WHERE dname = 'SALES');",
+    "xp": 160
+  },
+  {
+    "id": 125,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the name of the dept where more than average no. of emps are working.",
+    "hint": "Use GROUP BY ... HAVING ..., a subquery, JOIN emp with dept, an aggregate function.",
+    "expectedQuery": "SELECT d.dname FROM dept d, emp e WHERE e.deptno = d.deptno GROUP BY d.dname HAVING COUNT(*) > (SELECT AVG(COUNT(*)) FROM emp GROUP BY deptno)",
+    "solution": "SELECT d.dname FROM dept d, emp e WHERE e.deptno = d.deptno GROUP BY d.dname HAVING COUNT(*) > (SELECT AVG(COUNT(*)) FROM emp GROUP BY deptno);",
+    "xp": 205
+  },
+  {
+    "id": 126,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the Managers name who is having max no.of emps working under him.",
+    "hint": "Use GROUP BY ... HAVING ..., a subquery, a self-join on emp (worker/manager aliases), an aggregate function.",
+    "expectedQuery": "SELECT m.ename,COUNT(*) FROM emp w,emp m WHERE w.mgr = m.empno GROUP BY m.ename HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM emp GROUP BY mgr)",
+    "solution": "SELECT m.ename,COUNT(*) FROM emp w,emp m WHERE w.mgr = m.empno GROUP BY m.ename HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM emp GROUP BY mgr);",
+    "xp": 205
+  },
+  {
+    "id": 127,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the Ename and Sal is increased by 15% and expressed as no.of Dollars.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT ename,TO_CHAR(1.15*sal,'$99,999') AS \"SAL\" FROM emp",
+    "solution": "SELECT ename,TO_CHAR(1.15*sal,'$99,999') AS \"SAL\" FROM emp;",
+    "xp": 70
+  },
+  {
+    "id": 128,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Produce the output of EMP table 'EMP_AND_JOB' for Ename and Job.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT ename|| job AS \"EMP_AND_JOB\" FROM emp",
+    "solution": "SELECT ename|| job AS \"EMP_AND_JOB\" FROM emp;",
+    "xp": 65
+  },
+  {
+    "id": 129,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Produce the following output from EMP. I. EMPLOYEE SMITH (clerk) ALLEN (Salesman).",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT ename || '('|| lower(job)||')' AS \"EMPLOYEE\" FROM emp",
+    "solution": "SELECT ename || '('|| lower(job)||')' AS \"EMPLOYEE\" FROM emp;",
+    "xp": 75
+  },
+  {
+    "id": 130,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps with Hire date in format June 4, 1988.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT empno,ename,sal, TO_CHAR(hiredate,'MONTH DD,YYYY') FROM emp",
+    "solution": "SELECT empno,ename,sal, TO_CHAR(hiredate,'MONTH DD,YYYY') FROM emp;",
+    "xp": 75
+  },
+  {
+    "id": 131,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "Print a list of emp's Listing 'just salary' if Salary is more than 1500, on target if Salary is 1500 and 'Below 1500' if Salary is less than 1500.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT empno,ename,sal|| 'JUST SALARY' \"SAL\" FROM emp WHERE sal > 1500 UNION SELECT empno,ename, sal|| 'ON TARGET' \"SAL\" FROM emp WHERE sal = 1500 UNION SELECT empno,ename, sal|| 'BELOW 1500' \"SAL\" FROM emp WHERE sal < 1500",
+    "solution": "SELECT empno,ename,sal|| 'JUST SALARY' \"SAL\" FROM emp WHERE sal > 1500 UNION SELECT empno,ename, sal|| 'ON TARGET' \"SAL\" FROM emp WHERE sal = 1500 UNION SELECT empno,ename, sal|| 'BELOW 1500' \"SAL\" FROM emp WHERE sal < 1500;",
+    "xp": 210
+  },
+  {
+    "id": 132,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Write a query which return the day of the week for any date entered in format 'DD-MM-YY'.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT TO_CHAR(TO_DATE('& s','dd-mm-yy'),'day') FROM dual",
+    "solution": "SELECT TO_CHAR(TO_DATE('& s','dd-mm-yy'),'day') FROM dual;",
+    "xp": 70
+  },
+  {
+    "id": 133,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Write a query to calculate the length of service of any employee with the company, use DEFINE to avoid repetitive typing of functions.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "DEFINE service = ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) B) SELECT empno,ename,&service FROM emp WHERE ename = '& name'",
+    "solution": "DEFINE service = ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) B) SELECT empno,ename,&service FROM emp WHERE ename = '& name';",
+    "xp": 90
+  },
+  {
+    "id": 134,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Given a string in the format 'NN/NN', verify that the first two and last two characters are digits and the middle character is '/'. Print 'YES' if valid and 'NO' if not, for the test values '12/34', '01/1a', '99/98'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT '&input' AS str, CASE WHEN REGEXP_LIKE('&input', '^[0-9]{2}/[0-9]{2}$') THEN 'YES' ELSE 'NO' END AS valid FROM dual",
+    "solution": "SELECT '&input' AS str, CASE WHEN REGEXP_LIKE('&input', '^[0-9]{2}/[0-9]{2}$') THEN 'YES' ELSE 'NO' END AS valid FROM dual;",
+    "xp": 110
+  },
+  {
+    "id": 135,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Emps hired on or before 15th of any month are paid on the last Friday of that month those hired after 15th are paid on the first Friday of the following month. Print a list of emps their hire date and the first pay date. Sort on hire date.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT ename,hiredate,NEXT_DAY(LAST_DAY(hiredate),'FRIDAY')-7 FROM emp WHERE TO_CHAR(hiredate,'DD') <=15 UNION SELECT ename,hiredate,NEXT_DAY(LAST_DAY(hiredate),'FRIDAY') FROM emp WHERE TO_CHAR(hiredate,'DD') > 15",
+    "solution": "SELECT ename,hiredate,NEXT_DAY(LAST_DAY(hiredate),'FRIDAY')-7 FROM emp WHERE TO_CHAR(hiredate,'DD') <=15 UNION SELECT ename,hiredate,NEXT_DAY(LAST_DAY(hiredate),'FRIDAY') FROM emp WHERE TO_CHAR(hiredate,'DD') > 15;",
+    "xp": 110
+  },
+  {
+    "id": 136,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Count the no. of characters with out considering spaces for each name.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT LENGTH(replace(ename,' ',NULL)) FROM emp",
+    "solution": "SELECT LENGTH(replace(ename,' ',NULL)) FROM emp;",
+    "xp": 105
+  },
+  {
+    "id": 137,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out the emps who are getting decimal value in their Sal without using like operator.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE INSTR(sal,'.',1,1) > 0",
+    "solution": "SELECT * FROM emp WHERE INSTR(sal,'.',1,1) > 0;",
+    "xp": 105
+  },
+  {
+    "id": 138,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List those emps whose Salary contains first four digit of their Deptno.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE INSTR(TO_CHAR(sal,,9999),deptno,1,1)>0 AND INSTR(TO_CHAR(sal,9999),deptno,1,2)> 0",
+    "solution": "SELECT * FROM emp WHERE INSTR(TO_CHAR(sal,,9999),deptno,1,1)>0 AND INSTR(TO_CHAR(sal,9999),deptno,1,2)> 0;",
+    "xp": 110
+  },
+  {
+    "id": 139,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List those Managers who are getting less than his emps Salary.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT DISTINCT m.ename,m.sal FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal>m.sal",
+    "solution": "SELECT DISTINCT m.ename,m.sal FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal>m.sal;",
+    "xp": 110
+  },
+  {
+    "id": 140,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Print the details of all the emps who are sub-ordinates to Blake.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'BLAKE')",
+    "solution": "SELECT * FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'BLAKE');",
+    "xp": 110
+  },
+  {
+    "id": 141,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who are working as Managers using co-related sub-query.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno IN (SELECT mgr FROM emp)",
+    "solution": "SELECT * FROM emp WHERE empno IN (SELECT mgr FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 142,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the emps whose Mgr name is 'Jones' and also with his Manager name.",
+    "hint": "Use a subquery, a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT w.ename,m.ename,(SELECT ename FROM emp WHERE m.mgr = empno) \"his MANAGER\" FROM emp w,emp m WHERE w.mgr = m.empno AND m.ename = 'JONES'",
+    "solution": "SELECT w.ename,m.ename,(SELECT ename FROM emp WHERE m.mgr = empno) \"his MANAGER\" FROM emp w,emp m WHERE w.mgr = m.empno AND m.ename = 'JONES';",
+    "xp": 160
+  },
+  {
+    "id": 143,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Define a variable representing the expression used to calculate an employee's total annual remuneration, then use that variable in a statement which finds all employees who can earn 30000 a year or more.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "DEFINE annual = 12*NVL2(comm,sal+comm,sal); SELECT * FROM emp WHERE &annual > 30000",
+    "solution": "DEFINE annual = 12*NVL2(comm,sal+comm,sal); SELECT * FROM emp WHERE &annual > 30000;",
+    "xp": 80
+  },
+  {
+    "id": 144,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Find out how may Managers are their in the company.",
+    "hint": "Use an aggregate function.",
+    "expectedQuery": "SELECT COUNT(*) FROM emp WHERE job = 'MANAGER'",
+    "solution": "SELECT COUNT(*) FROM emp WHERE job = 'MANAGER';",
+    "xp": 65
+  },
+  {
+    "id": 145,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Find Average salary and Average total remuneration for each Job type. Remember Salesman earn commission.secommm.",
+    "hint": "Use an aggregate function.",
+    "expectedQuery": "SELECT AVG(sal),AVG(sal+NVL(comm,0)) FROM emp",
+    "solution": "SELECT AVG(sal),AVG(sal+NVL(comm,0)) FROM emp;",
+    "xp": 65
+  },
+  {
+    "id": 146,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Check whether all the emps numbers are indeed unique.",
+    "hint": "Use GROUP BY, an aggregate function.",
+    "expectedQuery": "SELECT empno,COUNT(*) FROM emp GROUP BY empno",
+    "solution": "SELECT empno,COUNT(*) FROM emp GROUP BY empno;",
+    "xp": 105
+  },
+  {
+    "id": 147,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are drawing less than 1000 Sort the output by Salary.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal < 1000 ORDER BY sal",
+    "solution": "SELECT * FROM emp WHERE sal < 1000 ORDER BY sal;",
+    "xp": 65
+  },
+  {
+    "id": 148,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the employee Name, Job, Annual Salary, deptno, Dept name and grade who earn 36000 a year or who are not CLERKS.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN.",
+    "expectedQuery": "selecte.ename,e.job,(12*e.sal)\"ANNUALSALARY\", e.deptno,d.dname,s.grade FROM emp e,dept d ,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND (((12*e.sal)>= 36000) OR (e.job != 'CLERK'))",
+    "solution": "selecte.ename,e.job,(12*e.sal)\"ANNUALSALARY\", e.deptno,d.dname,s.grade FROM emp e,dept d ,salgrade s WHERE e.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND (((12*e.sal)>= 36000) OR (e.job != 'CLERK'));",
+    "xp": 160
+  },
+  {
+    "id": 149,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out the Job that was filled in the first half of 1983 and same job that was filled during the same period of 1984.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE (TO_CHAR(hiredate,'MM ') <= 06 AND TO_CHAR(hiredate,'YYYY') = 1984) AND job IN (SELECT job FROM emp WHERE TO_CHAR(hiredate,'MM' ) <= 06 AND TO_CHAR(hiredate,'YYYY') <= 1983)",
+    "solution": "SELECT * FROM emp WHERE (TO_CHAR(hiredate,'MM ') <= 06 AND TO_CHAR(hiredate,'YYYY') = 1984) AND job IN (SELECT job FROM emp WHERE TO_CHAR(hiredate,'MM' ) <= 06 AND TO_CHAR(hiredate,'YYYY') <= 1983);",
+    "xp": 110
+  },
+  {
+    "id": 150,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out the emps who joined in the company before their Managers.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate< m.hiredate",
+    "solution": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate< m.hiredate;",
+    "xp": 110
+  },
+  {
+    "id": 151,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List all the emps by name and number along with their Manager's name and number. Also List KING who has no 'Manager'.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT w.empno,w.ename,m.empno,m.ename FROM emp w,emp m WHERE w.mgr= m.empno(+)",
+    "solution": "SELECT w.empno,w.ename,m.empno,m.ename FROM emp w,emp m WHERE w.mgr= m.empno(+);",
+    "xp": 110
+  },
+  {
+    "id": 152,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Find all the emps who earn the minimum Salary for each job wise in ascending order.",
+    "hint": "Use GROUP BY, a subquery, ORDER BY, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MIN(sal) FROM emp GROUP BY job) ORDER BY sal ASC",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MIN(sal) FROM emp GROUP BY job) ORDER BY sal ASC;",
+    "xp": 145
+  },
+  {
+    "id": 153,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "Find out all the emps who earn highest salary in each job type. Sort in descending salary order.",
+    "hint": "Use GROUP BY, a subquery, ORDER BY, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp GROUP BY job) ORDER BY sal DESC",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp GROUP BY job) ORDER BY sal DESC;",
+    "xp": 145
+  },
+  {
+    "id": 154,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find out the most recently hired emps in each Dept order by Hiredate.",
+    "hint": "Use a subquery, ORDER BY, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp e WHERE hiredate IN (SELECT MAX(hiredate) FROM emp WHERE e.deptno = deptno ) ORDER BY hiredate",
+    "solution": "SELECT * FROM emp e WHERE hiredate IN (SELECT MAX(hiredate) FROM emp WHERE e.deptno = deptno ) ORDER BY hiredate;",
+    "xp": 110
+  },
+  {
+    "id": 155,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the employee name,Salary and Deptno for each employee who earns a salary greater than the average for their department order by Deptno.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp e WHERE sal > (SELECT AVG(sal) FROM emp WHERE e.deptno = deptno )",
+    "solution": "SELECT * FROM emp e WHERE sal > (SELECT AVG(sal) FROM emp WHERE e.deptno = deptno );",
+    "xp": 110
+  },
+  {
+    "id": 156,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the Deptno where there are no emps.",
+    "hint": "Use GROUP BY ... HAVING ..., an aggregate function.",
+    "expectedQuery": "SELECT deptno ,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) = 0",
+    "solution": "SELECT deptno ,COUNT(*) FROM emp GROUP BY deptno HAVING COUNT(*) = 0;",
+    "xp": 135
+  },
+  {
+    "id": 157,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the No.of emp's and Avg salary within each department for each job.",
+    "hint": "Use GROUP BY, an aggregate function.",
+    "expectedQuery": "SELECT COUNT(*),AVG(sal),deptno,job FROM emp GROUP BY deptno,job",
+    "solution": "SELECT COUNT(*),AVG(sal),deptno,job FROM emp GROUP BY deptno,job;",
+    "xp": 110
+  },
+  {
+    "id": 158,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find the maximum average salary drawn for each job except for 'President'.",
+    "hint": "Use GROUP BY, an aggregate function.",
+    "expectedQuery": "SELECT MAX(AVG(sal)) FROM emp WHERE job != 'PRESIDENT' GROUP BY job",
+    "solution": "SELECT MAX(AVG(sal)) FROM emp WHERE job != 'PRESIDENT' GROUP BY job;",
+    "xp": 110
+  },
+  {
+    "id": 159,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Find the name and Job of the emps who earn Max salary and Commission.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal = (SELECT MAX(sal) FROM emp) AND comm. IS NOT NULL",
+    "solution": "SELECT * FROM emp WHERE sal = (SELECT MAX(sal) FROM emp) AND comm. IS NOT NULL;",
+    "xp": 110
+  },
+  {
+    "id": 160,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the Name, Job and Salary of the emps who are not belonging to the department 10 but who have the same job and Salary as the emps of dept 10.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT ename,job,sal FROM emp WHERE deptno != 10 AND job IN (SELECT job FROM emp WHERE deptno = 10) AND sal IN (SELECT sal FROM emp WHERE deptno = 10)",
+    "solution": "SELECT ename,job,sal FROM emp WHERE deptno != 10 AND job IN (SELECT job FROM emp WHERE deptno = 10) AND sal IN (SELECT sal FROM emp WHERE deptno = 10);",
+    "xp": 160
+  },
+  {
+    "id": 161,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Deptno, Name, Job, Salary and Sal+Comm of the SALESMAN who are earning maximum salary and commission in descending order.",
+    "hint": "Use a subquery, ORDER BY, an aggregate function.",
+    "expectedQuery": "SELECT deptno,name,job,sal,sal+NVL(comm.,0) FROM emp WHERE job = 'SALESMAN' AND sal IN (SELECT MAX(sal+NVL(comm.,0)) FROM emp WHERE comm. IS NOT NULL) ORDER BY (sal +NVL(comm.,0)) DESC",
+    "solution": "SELECT deptno,name,job,sal,sal+NVL(comm.,0) FROM emp WHERE job = 'SALESMAN' AND sal IN (SELECT MAX(sal+NVL(comm.,0)) FROM emp WHERE comm. IS NOT NULL) ORDER BY (sal +NVL(comm.,0)) DESC;",
+    "xp": 110
+  },
+  {
+    "id": 162,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Deptno, Name, Job, Salary and Sal+Comm of the emps who earn the second highest earnings (sal + comm.).",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT deptno,ename,sal,job,sal+NVL(comm,0) FROM emp e WHERE 2 = (SELECT COUNT(DISTINCT sal+NVL(comm,0)) FROM emp WHERE (e.sal+NVL(comm.,0)) <(sal+NVL(comm.,0))",
+    "solution": "SELECT deptno,ename,sal,job,sal+NVL(comm,0) FROM emp e WHERE 2 = (SELECT COUNT(DISTINCT sal+NVL(comm,0)) FROM emp WHERE (e.sal+NVL(comm.,0)) <(sal+NVL(comm.,0));",
+    "xp": 110
+  },
+  {
+    "id": 163,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the Deptno and their average salaries for dept with the average salary less than the averages for all department.",
+    "hint": "Use GROUP BY ... HAVING ..., a subquery, an aggregate function.",
+    "expectedQuery": "SELECT deptno,AVG(sal) FROM emp GROUP BY deptno HAVING AVG(sal) <(SELECT AVG(Sal) FROM emp)",
+    "solution": "SELECT deptno,AVG(sal) FROM emp GROUP BY deptno HAVING AVG(sal) <(SELECT AVG(Sal) FROM emp);",
+    "xp": 185
+  },
+  {
+    "id": 164,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List out the Names and Salaries of the emps along with their manager names and salaries for those emps who earn more salary than their Manager.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT w.ename,w.sal,m.ename,m.sal FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal > m.sal",
+    "solution": "SELECT w.ename,w.sal,m.ename,m.sal FROM emp w,emp m WHERE w.mgr = m.empno AND w.sal > m.sal;",
+    "xp": 110
+  },
+  {
+    "id": 165,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List out the Name, Job, Salary of the emps in the department with the highest average salary.",
+    "hint": "Use GROUP BY ... HAVING ..., nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM emp e HAVING AVG(sal) =(SELECT MAX(AVG(sal)) FROM emp GROUP BY deptno) GROUP BY deptno)",
+    "solution": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM emp e HAVING AVG(sal) =(SELECT MAX(AVG(sal)) FROM emp GROUP BY deptno) GROUP BY deptno);",
+    "xp": 205
+  },
+  {
+    "id": 166,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the empno,sal,comm. Of emps.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT empno,sal,comm. FROM emp",
+    "solution": "SELECT empno,sal,comm. FROM emp;",
+    "xp": 60
+  },
+  {
+    "id": 167,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the details of the emps in the ascending order of the sal.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp ORDER BY sal ASC",
+    "solution": "SELECT * FROM emp ORDER BY sal ASC;",
+    "xp": 60
+  },
+  {
+    "id": 168,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the dept in the ascending order of the job and the desc order of the emps print empno, ename.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp e ORDER BY e.job ASC,e.empno DESC",
+    "solution": "SELECT * FROM emp e ORDER BY e.job ASC,e.empno DESC;",
+    "xp": 70
+  },
+  {
+    "id": 169,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Display the unique dept of the emps.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM dept WHERE deptno IN (SELECT UNIQUE deptno FROM emp)",
+    "solution": "SELECT * FROM dept WHERE deptno IN (SELECT UNIQUE deptno FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 170,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display the unique dept with jobs.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT UNIQUE deptno ,job FROM emp",
+    "solution": "SELECT UNIQUE deptno ,job FROM emp;",
+    "xp": 60
+  },
+  {
+    "id": 171,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Display the details of the blake.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename = 'BLAKE'",
+    "solution": "SELECT * FROM emp WHERE ename = 'BLAKE';",
+    "xp": 65
+  },
+  {
+    "id": 172,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List all the clerks.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'CLERK'",
+    "solution": "SELECT * FROM emp WHERE job = 'CLERK';",
+    "xp": 65
+  },
+  {
+    "id": 173,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "list all the employees joined on 1st may 81.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate = '01-MAY-81'",
+    "solution": "SELECT * FROM emp WHERE hiredate = '01-MAY-81';",
+    "xp": 65
+  },
+  {
+    "id": 174,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the empno,ename,sal,deptno of the dept 10 emps in the ascending order of salary.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.sal,e.deptno FROM emp WHERE e.deptno = 10 ORDER BY e.sal ASC",
+    "solution": "SELECT e.empno,e.ename,e.sal,e.deptno FROM emp WHERE e.deptno = 10 ORDER BY e.sal ASC;",
+    "xp": 85
+  },
+  {
+    "id": 175,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps whose salaries are less than 3500.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal <3500",
+    "solution": "SELECT * FROM emp WHERE sal <3500;",
+    "xp": 60
+  },
+  {
+    "id": 176,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the empno,ename,sal of all the emp joined before 1 apr 81.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT e.empno ,e.ename .e.sal FROM emp WHERE hiredate <'01-APR-81'",
+    "solution": "SELECT e.empno ,e.ename .e.sal FROM emp WHERE hiredate <'01-APR-81';",
+    "xp": 75
+  },
+  {
+    "id": 177,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp whose annual sal is <25000 in the asc order of the salaries.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT * FROM emp WHERE (12*sal) < 25000 ORDER BY sal ASC",
+    "solution": "SELECT * FROM emp WHERE (12*sal) < 25000 ORDER BY sal ASC;",
+    "xp": 70
+  },
+  {
+    "id": 178,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the empno,ename,annsal,dailysal of all the salesmen in the asc ann sal.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT e.empno,e.ename ,12*sal \"ANN SAL\" , (12*sal)/365 \"DAILY SAL\" FROM emp e WHERE e.job = 'SALESMAN' ORDER BY \"ANN SAL\" ASC",
+    "solution": "SELECT e.empno,e.ename ,12*sal \"ANN SAL\" , (12*sal)/365 \"DAILY SAL\" FROM emp e WHERE e.job = 'SALESMAN' ORDER BY \"ANN SAL\" ASC;",
+    "xp": 90
+  },
+  {
+    "id": 179,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno,ename,hiredate,current date & exp in the ascending order of the exp.",
+    "hint": "Use a subquery, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT empno,ename,hiredate,(SELECT SYSDATE FROM dual), ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) EXP FROM emp ORDER BY EXP ASC",
+    "solution": "SELECT empno,ename,hiredate,(SELECT SYSDATE FROM dual), ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) EXP FROM emp ORDER BY EXP ASC;",
+    "xp": 110
+  },
+  {
+    "id": 180,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps whose exp is more than 10 years.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) > 10",
+    "solution": "SELECT * FROM emp WHERE ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) > 10;",
+    "xp": 75
+  },
+  {
+    "id": 181,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the Empno, Ename, Sal, TA (30%), DA (40%), HRA (50%), Gross, LIC, PF, Net Deduction, Net Allowance and Net Sal, in the ascending order of the net salary.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT empno, ename, sal, 0.3*sal AS ta, 0.4*sal AS da, 0.5*sal AS hra, sal+0.3*sal+0.4*sal+0.5*sal AS gross, 0.05*sal AS lic, 0.12*sal AS pf, (0.05*sal+0.12*sal) AS net_deduction, (0.3*sal+0.4*sal+0.5*sal-0.05*sal-0.12*sal) AS net_allow, (sal+0.3*sal+0.4*sal+0.5*sal-0.05*sal-0.12*sal) AS net_sal FROM emp ORDER BY net_sal ASC",
+    "solution": "SELECT empno, ename, sal, 0.3*sal AS ta, 0.4*sal AS da, 0.5*sal AS hra, sal+0.3*sal+0.4*sal+0.5*sal AS gross, 0.05*sal AS lic, 0.12*sal AS pf, (0.05*sal+0.12*sal) AS net_deduction, (0.3*sal+0.4*sal+0.5*sal-0.05*sal-0.12*sal) AS net_allow, (sal+0.3*sal+0.4*sal+0.5*sal-0.05*sal-0.12*sal) AS net_sal FROM emp ORDER BY net_sal ASC;",
+    "xp": 110
+  },
+  {
+    "id": 182,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are working as managers.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'MANAGER'",
+    "solution": "SELECT * FROM emp WHERE job = 'MANAGER';",
+    "xp": 65
+  },
+  {
+    "id": 183,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are either clerks or managers.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job IN ('CLERK','MANAGER')",
+    "solution": "SELECT * FROM emp WHERE job IN ('CLERK','MANAGER');",
+    "xp": 70
+  },
+  {
+    "id": 184,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who have joined on the following dates 1 may 81,17 nov 81,30 dec 81.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'DD-MON-YY') IN ('01-MAY-81','17-NOV-81','30-DEC-81')",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'DD-MON-YY') IN ('01-MAY-81','17-NOV-81','30-DEC-81');",
+    "xp": 85
+  },
+  {
+    "id": 185,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who have joined in the year 1981.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') = '1981';",
+    "xp": 70
+  },
+  {
+    "id": 186,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps whose annual sal ranging from 23000 to 40000.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE (12* sal) BETWEEN 23000 AND 40000",
+    "solution": "SELECT * FROM emp WHERE (12* sal) BETWEEN 23000 AND 40000;",
+    "xp": 70
+  },
+  {
+    "id": 187,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps working under the mgrs 7369,7890,7654,7900.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE mgr IN ( 7369,7890,7654,7900)",
+    "solution": "SELECT * FROM emp WHERE mgr IN ( 7369,7890,7654,7900);",
+    "xp": 70
+  },
+  {
+    "id": 188,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined in the second half of 82.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate BETWEEN '01-JUL-82' AND '31-DEC-82'",
+    "solution": "SELECT * FROM emp WHERE hiredate BETWEEN '01-JUL-82' AND '31-DEC-82';",
+    "xp": 75
+  },
+  {
+    "id": 189,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List all the 4char emps.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH (ename) = 4",
+    "solution": "SELECT * FROM emp WHERE LENGTH (ename) = 4;",
+    "xp": 65
+  },
+  {
+    "id": 190,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emp names starting with 'M' with 5 chars.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename LIKE 'M%' AND LENGTH (ename) = 5",
+    "solution": "SELECT * FROM emp WHERE ename LIKE 'M%' AND LENGTH (ename) = 5;",
+    "xp": 110
+  },
+  {
+    "id": 191,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps end with 'H' all together 5 chars.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename LIKE '%H' AND LENGTH (ename) = 5",
+    "solution": "SELECT * FROM emp WHERE ename LIKE '%H' AND LENGTH (ename) = 5;",
+    "xp": 110
+  },
+  {
+    "id": 192,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List names start with 'M'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE ename LIKE 'M%'",
+    "solution": "SELECT * FROM emp WHERE ename LIKE 'M%';",
+    "xp": 105
+  },
+  {
+    "id": 193,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who joined in the year 81.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') = '81'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') = '81';",
+    "xp": 70
+  },
+  {
+    "id": 194,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal is ending with 00.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM WHERE sal LIKE '%00'",
+    "solution": "SELECT * FROM WHERE sal LIKE '%00';",
+    "xp": 100
+  },
+  {
+    "id": 195,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp who joined in the month of JAN.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') = 'JAN'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') = 'JAN';",
+    "xp": 70
+  },
+  {
+    "id": 196,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Who joined in the month having char 'a'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'MONTH') LIKE'%A%'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR (hiredate,'MONTH') LIKE'%A%';",
+    "xp": 110
+  },
+  {
+    "id": 197,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Who joined in the month having second char 'a'.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') LIKE '_A%'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') LIKE '_A%';",
+    "xp": 110
+  },
+  {
+    "id": 198,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps whose salary is 4 digit number.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE LENGTH (sal) = 4",
+    "solution": "SELECT * FROM emp WHERE LENGTH (sal) = 4;",
+    "xp": 65
+  },
+  {
+    "id": 199,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp who joined in 80's.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') BETWEEN '80' AND '89'",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YY') BETWEEN '80' AND '89';",
+    "xp": 75
+  },
+  {
+    "id": 200,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emp who are clerks who have exp more than 8ys.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'CLERK' AND (MONTHS_BETWEEN(SYSDATE,hiredate) /12) > 8",
+    "solution": "SELECT * FROM emp WHERE job = 'CLERK' AND (MONTHS_BETWEEN(SYSDATE,hiredate) /12) > 8;",
+    "xp": 85
+  },
+  {
+    "id": 201,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the mgrs of dept 10 or 20.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'MANAGER' AND (deptno = 10 OR deptno =20)",
+    "solution": "SELECT * FROM emp WHERE job = 'MANAGER' AND (deptno = 10 OR deptno =20);",
+    "xp": 75
+  },
+  {
+    "id": 202,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps joined in jan with salary ranging from 1500 to 4000.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') = 'JAN' AND sal BETWEEN 1500 AND 4000",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'MON') = 'JAN' AND sal BETWEEN 1500 AND 4000;",
+    "xp": 85
+  },
+  {
+    "id": 203,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the unique jobs of dept 20 and 30 in desc order.",
+    "hint": "Use ORDER BY.",
+    "expectedQuery": "SELECT DISTINCT job FROM emp WHERE deptno IN (20,30) ORDER BY job DESC",
+    "solution": "SELECT DISTINCT job FROM emp WHERE deptno IN (20,30) ORDER BY job DESC;",
+    "xp": 75
+  },
+  {
+    "id": 204,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps along with exp of those working under the mgr whose number is starting with 7 but should not have a 9 joined before 1983.",
+    "hint": "Use LIKE for pattern matching.",
+    "expectedQuery": "SELECT * FROM emp WHERE (mgr LIKE '7%' AND mgr NOT LIKE '%9%') AND TO_CHAR(hiredate,'YY') < '83'",
+    "solution": "SELECT * FROM emp WHERE (mgr LIKE '7%' AND mgr NOT LIKE '%9%') AND TO_CHAR(hiredate,'YY') < '83';",
+    "xp": 110
+  },
+  {
+    "id": 205,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "List the emps who are working as either mgr or analyst with the salary ranging from 2000 to 5000 and with out comm.",
+    "hint": "Use BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE (job IN ('MANAGER' ,'ANALYST') ) AND sal BETWEEN 2000 AND 5000 AND comm IS NULL",
+    "solution": "SELECT * FROM emp WHERE (job IN ('MANAGER' ,'ANALYST') ) AND sal BETWEEN 2000 AND 5000 AND comm IS NULL;",
+    "xp": 90
+  },
+  {
+    "id": 206,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno,ename,sal,job of the emps with /ann sal <34000 but receiving some comm. Which should not be>sal and desg should be sales man working for dept 30.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT empno,ename,sal,job FROM emp WHERE 12*(sal+NVL(comm,0)) < 34000 AND comm IS NOT NULL AND comm<sal AND job = 'SALESMAN' AND deptno = 30",
+    "solution": "SELECT empno,ename,sal,job FROM emp WHERE 12*(sal+NVL(comm,0)) < 34000 AND comm IS NOT NULL AND comm<sal AND job = 'SALESMAN' AND deptno = 30;",
+    "xp": 110
+  },
+  {
+    "id": 207,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the emps who are working for dept 10 or 20 with desgs as clerk or analyst with a sal is either 3 or 4 digits with an exp>8ys but does not belong to mons of mar,apr,sep and working for mgrs &no is not ending with 88 and 56.",
+    "hint": "Use LIKE for pattern matching, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno IN (10,20) AND job IN ('CLERK','ANALYST') AND (LENGTH(sal) IN (3,4)) AND ((MONTHS_BETWEEN(SYSDATE,hiredate))/12)> 8 AND TO_CHAR(hiredate,'MON') NOT IN ('MAR','SEP','APR') AND (mgr NOT LIKE '%88' AND mgr NOT LIKE '%56')",
+    "solution": "SELECT * FROM emp WHERE deptno IN (10,20) AND job IN ('CLERK','ANALYST') AND (LENGTH(sal) IN (3,4)) AND ((MONTHS_BETWEEN(SYSDATE,hiredate))/12)> 8 AND TO_CHAR(hiredate,'MON') NOT IN ('MAR','SEP','APR') AND (mgr NOT LIKE '%88' AND mgr NOT LIKE '%56');",
+    "xp": 210
+  },
+  {
+    "id": 208,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the Empno, Ename, Sal, Job, Deptno and Exp of all emps belonging to dept 10 or 20 with 6 to 10 years experience, receiving a Comm greater than 200, with Sal less than 2500, not joined in the month of Sep or Nov, and whose Mgr number does not contain the digit 9 or 0, in the asc order of Deptno and desc order of Job.",
+    "hint": "Use LIKE for pattern matching, BETWEEN, ORDER BY.",
+    "expectedQuery": "SELECT e.empno, e.ename, e.sal, e.job, e.deptno, (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12) exp FROM emp e WHERE e.deptno IN (10,20) AND (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12) BETWEEN 6 AND 10 AND e.comm > 200 AND e.sal < 2500 AND TO_CHAR(e.hiredate,'MON') NOT IN ('SEP','NOV') AND e.mgr NOT LIKE '%9%' AND e.mgr NOT LIKE '%0%' ORDER BY e.deptno ASC, e.job DESC",
+    "solution": "SELECT e.empno, e.ename, e.sal, e.job, e.deptno, (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12) exp FROM emp e WHERE e.deptno IN (10,20) AND (MONTHS_BETWEEN(SYSDATE,e.hiredate)/12) BETWEEN 6 AND 10 AND e.comm > 200 AND e.sal < 2500 AND TO_CHAR(e.hiredate,'MON') NOT IN ('SEP','NOV') AND e.mgr NOT LIKE '%9%' AND e.mgr NOT LIKE '%0%' ORDER BY e.deptno ASC, e.job DESC;",
+    "xp": 210
+  },
+  {
+    "id": 209,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the details of the emps working at Chicago.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc = 'CHICAGO')",
+    "solution": "SELECT * FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE dept.loc = 'CHICAGO');",
+    "xp": 110
+  },
+  {
+    "id": 210,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno,ename,deptno,loc of all the emps.",
+    "hint": "Use JOIN emp with dept.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.deptno,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno",
+    "solution": "SELECT e.empno,e.ename,e.deptno,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno;",
+    "xp": 110
+  },
+  {
+    "id": 211,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno,ename,loc,dname of all the depts.,10 and 20.",
+    "hint": "Use JOIN emp with dept.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.deptno,d.loc,d.dname FROM emp e ,dept d WHERE e.deptno = d.deptno AND e.deptno IN (10,20)",
+    "solution": "SELECT e.empno,e.ename,e.deptno,d.loc,d.dname FROM emp e ,dept d WHERE e.deptno = d.deptno AND e.deptno IN (10,20);",
+    "xp": 110
+  },
+  {
+    "id": 212,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno, ename, sal, loc of the emps working at Chicago dallas with an exp>6ys.",
+    "hint": "Use JOIN emp with dept, BETWEEN.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.deptno,e.sal,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc IN ('CHICAGO','DALLAS') AND (MONTHS_BETWEEN(SYSDATE,hiredate)/12)> 6",
+    "solution": "SELECT e.empno,e.ename,e.deptno,e.sal,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc IN ('CHICAGO','DALLAS') AND (MONTHS_BETWEEN(SYSDATE,hiredate)/12)> 6;",
+    "xp": 110
+  },
+  {
+    "id": 213,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the emps along with loc of those who belongs to dallas ,newyork with sal ranging from 2000 to 5000 joined in 81.",
+    "hint": "Use JOIN emp with dept, BETWEEN.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.deptno,e.sal,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc IN ('NEW YORK','DALLAS') AND TO_CHAR(e.hiredate,'YY') = '81' AND e.sal BETWEEN 2000 AND 5000",
+    "solution": "SELECT e.empno,e.ename,e.deptno,e.sal,d.loc FROM emp e ,dept d WHERE e.deptno = d.deptno AND d.loc IN ('NEW YORK','DALLAS') AND TO_CHAR(e.hiredate,'YY') = '81' AND e.sal BETWEEN 2000 AND 5000;",
+    "xp": 160
+  },
+  {
+    "id": 214,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the empno,ename,sal,grade of all emps.",
+    "hint": "Use the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT e.empno,e.ename,e.sal,s.grade FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal",
+    "solution": "SELECT e.empno,e.ename,e.sal,s.grade FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal;",
+    "xp": 110
+  },
+  {
+    "id": 215,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the grade 2 and 3 emp of Chicago.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (2,3))",
+    "solution": "SELECT * FROM emp WHERE empno IN (SELECT empno FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (2,3));",
+    "xp": 160
+  },
+  {
+    "id": 216,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the emps with loc and grade of accounting dept or the locs dallas or Chicago with the grades 3 to 5 &exp >6y.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT e.deptno,e.empno,e.ename,e.sal,d.dname,d.loc,s.grade FROM emp e,salgrade s,dept d wheree.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,5) AND ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) > 6 AND ( d.dname = 'ACCOUNTING' OR D.loc IN ('DALLAS','CHICAGO'))",
+    "solution": "SELECT e.deptno,e.empno,e.ename,e.sal,d.dname,d.loc,s.grade FROM emp e,salgrade s,dept d wheree.deptno = d.deptno AND e.sal BETWEEN s.losal AND s.hisal AND s.grade IN (3,5) AND ((MONTHS_BETWEEN(SYSDATE,hiredate))/12) > 6 AND ( d.dname = 'ACCOUNTING' OR D.loc IN ('DALLAS','CHICAGO'));",
+    "xp": 210
+  },
+  {
+    "id": 217,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the grades 3 emps of research and operations depts.. joined after 1987 and whose names should not be either miller or allen.",
+    "hint": "Use JOIN emp with dept, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT e.ename FROM emp e ,dept d,salgrade s WHERE e.deptno = d.deptno AND d.dname IN ('OPERATIONS','RESEARCH') AND e.sal BETWEEN s.losal AND s.hisal AND e.ename NOT IN ('MILLER','ALLEN') AND TO_CHAR(hiredate,'YYYY') >1987",
+    "solution": "SELECT e.ename FROM emp e ,dept d,salgrade s WHERE e.deptno = d.deptno AND d.dname IN ('OPERATIONS','RESEARCH') AND e.sal BETWEEN s.losal AND s.hisal AND e.ename NOT IN ('MILLER','ALLEN') AND TO_CHAR(hiredate,'YYYY') >1987;",
+    "xp": 210
+  },
+  {
+    "id": 218,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose job is same as smith.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'SMITH')",
+    "solution": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'SMITH');",
+    "xp": 110
+  },
+  {
+    "id": 219,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who are senior to miller.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate <(SELECT hiredate FROM emp WHERE ename = 'MILLER')",
+    "solution": "SELECT * FROM emp WHERE hiredate <(SELECT hiredate FROM emp WHERE ename = 'MILLER');",
+    "xp": 110
+  },
+  {
+    "id": 220,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the emps whose job is same as either allen or sal>allen.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'ALLEN') OR sal > (SELECT sal FROM emp WHERE ename = 'ALLEN')",
+    "solution": "SELECT * FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'ALLEN') OR sal > (SELECT sal FROM emp WHERE ename = 'ALLEN');",
+    "xp": 160
+  },
+  {
+    "id": 221,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps who are senior to their own manager.",
+    "hint": "Use a self-join on emp (worker/manager aliases).",
+    "expectedQuery": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate < m.hiredate",
+    "solution": "SELECT * FROM emp w,emp m WHERE w.mgr = m.empno AND w.hiredate < m.hiredate;",
+    "xp": 110
+  },
+  {
+    "id": 222,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal greater than blakes sal.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal>(SELECT sal FROM emp WHERE ename = 'BLAKE')",
+    "solution": "SELECT * FROM emp WHERE sal>(SELECT sal FROM emp WHERE ename = 'BLAKE');",
+    "xp": 110
+  },
+  {
+    "id": 223,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the dept 10 emps whose sal>allen sal.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE deptno = 10 AND sal > (SELECT sal FROM emp WHERE ename = 'ALLEN')",
+    "solution": "SELECT * FROM emp WHERE deptno = 10 AND sal > (SELECT sal FROM emp WHERE ename = 'ALLEN');",
+    "xp": 110
+  },
+  {
+    "id": 224,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the mgrs who are senior to king and who are junior to smith.",
+    "hint": "Use nested subqueries.",
+    "expectedQuery": "SELECT * FROM emp WHERE empno IN (SELECT mgr FROM emp WHERE hiredate<(SELECT hiredate FROM emp WHERE ename = 'KING' ) AND hiredate > (SELECT hiredate FROM emp WHERE ename = 'SMITH')) AND mgr IS NOT NULL",
+    "solution": "SELECT * FROM emp WHERE empno IN (SELECT mgr FROM emp WHERE hiredate<(SELECT hiredate FROM emp WHERE ename = 'KING' ) AND hiredate > (SELECT hiredate FROM emp WHERE ename = 'SMITH')) AND mgr IS NOT NULL;",
+    "xp": 160
+  },
+  {
+    "id": 225,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the empno,ename,loc,sal,dname,loc of the all the emps belonging to king dept.",
+    "hint": "Use a subquery, JOIN emp with dept.",
+    "expectedQuery": "SELECT e.empno,e.ename,d.loc,e.sal,d.dname FROM emp e,dept d WHERE e.deptno=d.deptno AND e.deptno IN (SELECT deptno FROM emp WHERE ename = 'KING'AND emp.empno <> e.empno)",
+    "solution": "SELECT e.empno,e.ename,d.loc,e.sal,d.dname FROM emp e,dept d WHERE e.deptno=d.deptno AND e.deptno IN (SELECT deptno FROM emp WHERE ename = 'KING'AND emp.empno <> e.empno);",
+    "xp": 160
+  },
+  {
+    "id": 226,
+    "level": 4,
+    "levelTitle": "Level 4: SQL Master Architect",
+    "question": "List the emps whose salgrade are greater than the grade of miller.",
+    "hint": "Use a subquery, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade > (SELECT s.grade FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND e.ename = 'MILLER')",
+    "solution": "SELECT * FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade > (SELECT s.grade FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND e.ename = 'MILLER');",
+    "xp": 210
+  },
+  {
+    "id": 227,
+    "level": 5,
+    "levelTitle": "Level 5: SQL Grandmaster",
+    "question": "List the emps who are belonging dallas or Chicago with the grade same as adamsor exp more than smith.",
+    "hint": "Use nested subqueries, JOIN emp with dept, the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp e ,dept d,salgrade s WHERE e.deptno= d.deptno AND d.loc IN ('DALLAS','CHICAGO') AND e.sal BETWEEN s.losal AND s.hisal AND (s.grade IN (SELECT s.grade FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND e.ename = 'ADAMS') OR MONTHS_BETWEEN (SYSDATE,hiredate) > (SELECT MONTHS_BETWEEN(SYSDATE,hiredate) FROM emp WHERE ename = 'SMITH'))",
+    "solution": "SELECT * FROM emp e ,dept d,salgrade s WHERE e.deptno= d.deptno AND d.loc IN ('DALLAS','CHICAGO') AND e.sal BETWEEN s.losal AND s.hisal AND (s.grade IN (SELECT s.grade FROM emp e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND e.ename = 'ADAMS') OR MONTHS_BETWEEN (SYSDATE,hiredate) > (SELECT MONTHS_BETWEEN(SYSDATE,hiredate) FROM emp WHERE ename = 'SMITH'));",
+    "xp": 280
+  },
+  {
+    "id": 228,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal is same as ford or blake.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp e WHERE e.ename IN ('FORD','BLAKE')AND emp.empno <> e.empno)",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp e WHERE e.ename IN ('FORD','BLAKE')AND emp.empno <> e.empno);",
+    "xp": 110
+  },
+  {
+    "id": 229,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the emps whose sal is same as any one of the following.",
+    "hint": "Use a subquery.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp e WHERE emp.empno <> e.empno)",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT sal FROM emp e WHERE emp.empno <> e.empno);",
+    "xp": 110
+  },
+  {
+    "id": 230,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Sal of any clerk of emp1 table.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE job = 'CLERK'",
+    "solution": "SELECT * FROM emp WHERE job = 'CLERK';",
+    "xp": 65
+  },
+  {
+    "id": 231,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Any emp of emp2 joined before 82.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') < 1982",
+    "solution": "SELECT * FROM emp WHERE TO_CHAR(hiredate,'YYYY') < 1982;",
+    "xp": 70
+  },
+  {
+    "id": 232,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "The total remuneration (sal+comm.) of all sales person of Sales dept belonging to emp3 table.",
+    "hint": "Use a subquery, JOIN emp with dept.",
+    "expectedQuery": "SELECT * FROM emp e WHERE (sal+NVL(comm,0)) IN (SELECT sal+NVL(comm,0) FROM emp e,dept d WHERE e.deptno=d.deptno AND d.dname = 'SALES'AND e.job = 'SALESMAN')",
+    "solution": "SELECT * FROM emp e WHERE (sal+NVL(comm,0)) IN (SELECT sal+NVL(comm,0) FROM emp e,dept d WHERE e.deptno=d.deptno AND d.dname = 'SALES'AND e.job = 'SALESMAN');",
+    "xp": 160
+  },
+  {
+    "id": 233,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "Any Grade 4 emps Sal of emp 4 table.",
+    "hint": "Use the salgrade table, BETWEEN.",
+    "expectedQuery": "SELECT * FROM emp4 e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 4",
+    "solution": "SELECT * FROM emp4 e,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 4;",
+    "xp": 110
+  },
+  {
+    "id": 234,
+    "level": 1,
+    "levelTitle": "Level 1: SQL Novice",
+    "question": "Any emp Sal of emp5 table.",
+    "hint": "Use a simple WHERE condition.",
+    "expectedQuery": "SELECT * FROM emp5",
+    "solution": "SELECT * FROM emp5;",
+    "xp": 55
+  },
+  {
+    "id": 235,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the highest paid emp.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp)",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp);",
+    "xp": 110
+  },
+  {
+    "id": 236,
+    "level": 2,
+    "levelTitle": "Level 2: SQL Apprentice",
+    "question": "List the details of most recently hired emp of dept 30.",
+    "hint": "Use a subquery, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE hiredate IN (SELECT MAX(hiredate) FROM emp WHERE deptno = 30)",
+    "solution": "SELECT * FROM emp WHERE hiredate IN (SELECT MAX(hiredate) FROM emp WHERE deptno = 30);",
+    "xp": 110
+  },
+  {
+    "id": 237,
+    "level": 5,
+    "levelTitle": "Level 5: SQL Grandmaster",
+    "question": "List the highest paid emp of Chicago joined before the most recently hired emp of grade 2.",
+    "hint": "Use nested subqueries, JOIN emp with dept, the salgrade table, BETWEEN, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal = ( SELECT MAX(sal) FROM emp e,dept d WHERE e.deptno = d.deptno AND d.loc = 'CHICAGO' AND hiredate <(SELECT MAX(hiredate) FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 2))",
+    "solution": "SELECT * FROM emp WHERE sal = ( SELECT MAX(sal) FROM emp e,dept d WHERE e.deptno = d.deptno AND d.loc = 'CHICAGO' AND hiredate <(SELECT MAX(hiredate) FROM emp e ,salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND s.grade = 2));",
+    "xp": 280
+  },
+  {
+    "id": 238,
+    "level": 3,
+    "levelTitle": "Level 3: SQL Tactician",
+    "question": "List the highest paid emp working under king.",
+    "hint": "Use nested subqueries, an aggregate function.",
+    "expectedQuery": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'KING'))",
+    "solution": "SELECT * FROM emp WHERE sal IN (SELECT MAX(sal) FROM emp WHERE mgr IN (SELECT empno FROM emp WHERE ename = 'KING'));",
+    "xp": 155
+  }
+]
