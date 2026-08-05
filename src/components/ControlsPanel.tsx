@@ -152,7 +152,7 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
                 className={`py-1-5 px-2 text-xs rounded-lg border transition-all ${
                   config.trafficPattern === pattern.id
                     ? 'bg-blue-600 border-blue-500 text-white font-bold'
-                    : 'bg-white-10 border-white-10 text-gray-300 hover:text-white'
+                    : 'bg-slate-800 border-slate-700 text-gray-300 hover:text-white hover:bg-slate-700'
                 }`}
               >
                 {pattern.label}

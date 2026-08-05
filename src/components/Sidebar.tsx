@@ -100,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
               <button
                 onClick={onToggleOpen}
-                className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors border border-white/10 flex items-center justify-center flex-shrink-0"
+                className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-gray-400 hover:text-white transition-colors border border-slate-700 flex items-center justify-center flex-shrink-0"
                 title="Collapse Sidebar"
               >
                 <PanelLeftClose className="w-4 h-4 text-cyan-400" />

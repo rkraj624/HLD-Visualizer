@@ -2,13 +2,14 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   X, ChevronRight, ChevronLeft, Volume2, VolumeX,
   Sparkles, Zap, Sliders, Eye, BarChart3, Code2, BookOpen,
-  GitCompareArrows, Play, SkipForward, Navigation, Mic,
+  GitCompareArrows, Play, SkipForward, Navigation, Mic, Server,
 } from 'lucide-react';
 import { soundFx } from '../utils/audio';
 
 interface WalkingGuideProps {
   isOpen: boolean;
   onClose: () => void;
+  activeTopicId?: string;
 }
 
 interface TourStep {
@@ -135,6 +136,199 @@ const TOUR_STEPS: TourStep[] = [
   },
 ];
 
+const LOAD_BALANCER_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'lb-welcome',
+    title: 'Welcome to Load Balancer Routing Engine',
+    description:
+      'This interactive module visualizes how production Load Balancers (like Nginx, HAProxy, Envoy, and AWS ALB) route client traffic across backend server pools with failover and health checks.',
+    narration:
+      'Welcome to the Load Balancer Routing Engine! This interactive module visualizes how production load balancers like Nginx, HAProxy, Envoy, and AWS ALB route client traffic across backend server pools with failover and health checks.',
+    icon: <Server className="w-7 h-7 text-cyan-400" />,
+    position: 'center',
+    accentColor: '#06b6d4',
+  },
+  {
+    id: 'lb-algorithms',
+    title: 'Select Routing Strategy',
+    description:
+      'Switch between 4 production routing algorithms: Round Robin, Weighted Round Robin, Least Connections, and IP Hash (Session Stickiness). Each strategy distributes load differently based on server capacity.',
+    narration:
+      'You can switch between four production routing algorithms: Round Robin, Weighted Round Robin, Least Connections, and IP Hash. Each strategy distributes load differently based on server capacity and session state.',
+    icon: <Navigation className="w-7 h-7 text-blue-400" />,
+    position: 'top',
+    accentColor: '#3b82f6',
+  },
+  {
+    id: 'lb-topology',
+    title: '3-Tier Network Topology Canvas',
+    description:
+      'Observe traffic flowing from Client IP Sources ➔ Load Balancer Proxy ➔ Backend Server Nodes. Target servers light up with a glowing cyan border when chosen.',
+    narration:
+      'The 3 tier network topology canvas shows requests flowing from Client IP sources, through the Load Balancer Proxy, directly to backend server nodes. Target servers light up with a glowing cyan border when chosen.',
+    icon: <Eye className="w-7 h-7 text-purple-400" />,
+    position: 'center',
+    accentColor: '#a855f7',
+  },
+  {
+    id: 'lb-health-failover',
+    title: 'Simulate Server Failover (🟢 HEALTHY vs 🔴 DOWN)',
+    description:
+      'Click the HEALTHY badge on any server node to simulate a node crash. Watch the load balancer instantly detect the failure, skip dead servers, and failover traffic to healthy nodes.',
+    narration:
+      'You can click the HEALTHY badge on any server node to simulate a node crash. Watch the load balancer instantly detect the failure, skip dead servers, and failover traffic to healthy nodes.',
+    icon: <Sliders className="w-7 h-7 text-rose-400" />,
+    position: 'center',
+    accentColor: '#ef4444',
+  },
+  {
+    id: 'lb-weight-cpu',
+    title: 'Capacity Weights & CPU Load Gauges',
+    description:
+      'Adjust server capacity weights (+ / -) to route more traffic to high-spec nodes. Monitor live CPU load gauges and active connection bars.',
+    narration:
+      'Adjust server capacity weights to route more traffic to high spec nodes. You can also monitor live CPU load gauges and active connection bars.',
+    icon: <Sliders className="w-7 h-7 text-emerald-400" />,
+    position: 'bottom',
+    accentColor: '#10b981',
+  },
+  {
+    id: 'lb-analytics-logs',
+    title: 'Traffic Share & Live Terminal Logs',
+    description:
+      'Analyze relative server traffic share percentages in the progress bar chart and inspect real-time routing decision logs in the terminal console.',
+    narration:
+      'Finally, analyze relative server traffic share percentages in the progress bar chart and inspect real time routing decision logs in the terminal console.',
+    icon: <BarChart3 className="w-7 h-7 text-amber-400" />,
+    position: 'bottom',
+    accentColor: '#f59e0b',
+  },
+];
+
+const CACHING_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'cache-welcome',
+    title: 'Welcome to Distributed Caching Simulator',
+    description:
+      'This module lets you explore three core caching strategies used in production systems: Cache-Aside, Write-Through, and Write-Back, along with LRU eviction and Redis cluster patterns.',
+    narration:
+      'Welcome to the Distributed Caching Simulator! Here you can explore three core caching strategies: Cache-Aside, Write-Through, and Write-Back. You will also see LRU eviction and Redis cluster patterns in action.',
+    icon: <Zap className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#10b981',
+  },
+  {
+    id: 'cache-strategies',
+    title: 'Choose a Cache Strategy',
+    description:
+      'Switch between Cache-Aside (lazy loading), Write-Through (synchronous writes), and Write-Back (async writes). Each strategy makes different trade-offs between consistency, latency, and durability.',
+    narration:
+      'Start by selecting a caching strategy. Cache-Aside lazily loads data on miss. Write-Through writes to cache and DB synchronously. Write-Back writes to cache first and flushes to DB asynchronously for best write performance.',
+    icon: <Sliders className="w-7 h-7" />,
+    position: 'top',
+    accentColor: '#06b6d4',
+  },
+  {
+    id: 'cache-lookup',
+    title: 'Simulate Cache Hits & Misses',
+    description:
+      'Trigger cache lookups and watch the system return a HIT (data found in cache) or a MISS (data fetched from the database and then stored in cache). Monitor how hit rate improves over time.',
+    narration:
+      'Trigger lookups to see cache hits and misses in real time. When a key is found in cache, it is a HIT. When it is not, the system fetches from the database and stores the result — a MISS. Watch your hit rate climb as the cache warms up.',
+    icon: <Eye className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#a855f7',
+  },
+  {
+    id: 'cache-store',
+    title: 'Live Cache Store & TTL',
+    description:
+      'Inspect the in-memory cache store. Each entry shows its key, stored value, TTL (time-to-live in seconds), and hit count. Entries are evicted using LRU when the cache reaches capacity.',
+    narration:
+      'The live cache store shows every cached entry with its key, value, TTL in seconds, and how many times it has been hit. When capacity is reached, the least recently used item is evicted first.',
+    icon: <BarChart3 className="w-7 h-7" />,
+    position: 'bottom',
+    accentColor: '#f59e0b',
+  },
+  {
+    id: 'cache-finish',
+    title: "You're All Set! 🎉",
+    description:
+      'Try switching between strategies and observe how hit rate, latency, and write behavior differ. Caching is one of the most impactful levers in system design — master it here!',
+    narration:
+      'You are all set! Switch between strategies to compare behaviors. Caching is one of the highest leverage patterns in system design. Explore away, and replay this tour anytime from the header.',
+    icon: <Sparkles className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#10b981',
+  },
+];
+
+const CONSISTENT_HASHING_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'ch-welcome',
+    title: 'Welcome to Consistent Hashing Ring',
+    description:
+      'This module visualizes the consistent hashing ring used by distributed databases like DynamoDB, Cassandra, and Redis Cluster to distribute keys across nodes with minimal remapping on topology changes.',
+    narration:
+      'Welcome to the Consistent Hashing Ring visualizer! This shows how databases like DynamoDB and Cassandra distribute keys across nodes using a hash ring, with minimal remapping when nodes are added or removed.',
+    icon: <Zap className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#f59e0b',
+  },
+  {
+    id: 'ch-ring',
+    title: 'The Hash Ring',
+    description:
+      'Each node is placed on a circular ring based on its hash value. Keys are also hashed to positions on the ring and routed to the nearest clockwise node. This ensures balanced distribution with O(log N) lookups.',
+    narration:
+      'Each server node is placed on a circular ring using its hash value. When a key arrives, it is hashed to a position on the ring and routed to the nearest node in the clockwise direction. This gives you balanced distribution with minimal remapping.',
+    icon: <Eye className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#a855f7',
+  },
+  {
+    id: 'ch-vnodes',
+    title: 'Virtual Nodes (VNodes)',
+    description:
+      'Each physical node gets multiple positions (virtual nodes) on the ring for better load distribution. Adding a node with 3 vnodes means only 1/N of keys are remapped — not all of them.',
+    narration:
+      'Virtual nodes give each physical node multiple positions on the ring. This dramatically improves load balance. When you add a new node, only a fraction of keys are remapped, not the entire keyspace.',
+    icon: <Sliders className="w-7 h-7" />,
+    position: 'top',
+    accentColor: '#06b6d4',
+  },
+  {
+    id: 'ch-add-node',
+    title: 'Add / Remove Nodes',
+    description:
+      'Click "Add Node" to insert a new server into the ring. Watch how only a subset of key assignments change — this is the key advantage over simple modulo hashing, where all keys must be remapped.',
+    narration:
+      'Try adding a node to the ring. Notice how only the keys between the new node and its predecessor are remapped. Compare this to simple modulo hashing where adding one server reshuffles every single key.',
+    icon: <BarChart3 className="w-7 h-7" />,
+    position: 'bottom',
+    accentColor: '#f59e0b',
+  },
+  {
+    id: 'ch-finish',
+    title: "You're All Set! 🎉",
+    description:
+      'Consistent hashing is a core concept behind every horizontally scalable distributed system. Add nodes, observe key remapping, and master the pattern used by DynamoDB, Cassandra, and Redis Cluster.',
+    narration:
+      'You are all set! Consistent hashing is the backbone of every horizontally scalable database. Experiment with adding and removing nodes to see exactly how key remapping works. You can replay this tour anytime.',
+    icon: <Sparkles className="w-7 h-7" />,
+    position: 'center',
+    accentColor: '#f59e0b',
+  },
+];
+
+// Map of topic IDs to their dedicated tour steps
+const TOPIC_TOUR_MAP: Record<string, TourStep[]> = {
+  'rate-limiting': TOUR_STEPS,
+  'load-balancing': LOAD_BALANCER_TOUR_STEPS,
+  'caching': CACHING_TOUR_STEPS,
+  'consistent-hashing': CONSISTENT_HASHING_TOUR_STEPS,
+};
+
 // Helper to filter out legacy robotic voices and get clean English human voices
 function getHumanVoices(): SpeechSynthesisVoice[] {
   if (typeof window === 'undefined' || !window.speechSynthesis) return [];
@@ -178,7 +372,8 @@ function pickBestVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | n
   return voices.find((v) => v.localService) || voices[0];
 }
 
-export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) => {
+export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose, activeTopicId }) => {
+  const steps = (activeTopicId && TOPIC_TOUR_MAP[activeTopicId]) ? TOPIC_TOUR_MAP[activeTopicId] : TOUR_STEPS;
   const [currentStep, setCurrentStep] = useState(0);
   const [isNarrating, setIsNarrating] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -187,8 +382,8 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
   const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  const step = TOUR_STEPS[currentStep];
-  const totalSteps = TOUR_STEPS.length;
+  const step = steps[currentStep] || steps[0];
+  const totalSteps = steps.length;
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
   // Preload and filter voices
@@ -224,7 +419,8 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
 
       stopSpeech();
 
-      const utterance = new SpeechSynthesisUtterance(TOUR_STEPS[stepIndex].narration);
+      const targetStep = steps[stepIndex] || steps[0];
+      const utterance = new SpeechSynthesisUtterance(targetStep.narration);
       // Human conversational prosody settings
       utterance.rate = 0.92;   // Natural speaking pace (not rushed)
       utterance.pitch = 1.02;  // Warm intonation
@@ -245,16 +441,17 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
         window.speechSynthesis.speak(utterance);
       }, 250);
     },
-    [audioEnabled, selectedVoice, availableVoices, stopSpeech]
+    // `steps` is included so switching topics always narrates the correct topic's text
+    [audioEnabled, selectedVoice, availableVoices, stopSpeech, steps]
   );
 
-  // Auto-narrate when step changes
+  // Auto-narrate when step changes or when topic switches (narrateStep recreated)
   useEffect(() => {
     if (isOpen && audioEnabled) {
       narrateStep(currentStep);
     }
     return () => stopSpeech();
-  }, [currentStep, isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentStep, isOpen, narrateStep]); // narrateStep dep ensures topic switch re-fires correct audio
 
   // Reset on open
   useEffect(() => {
@@ -296,13 +493,11 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
 
   const handleClose = () => {
     stopSpeech();
-    localStorage.setItem('rlv-tour-seen', 'true');
     onClose();
   };
 
   const handleSkip = () => {
     stopSpeech();
-    localStorage.setItem('rlv-tour-seen', 'true');
     onClose();
   };
 
@@ -487,7 +682,7 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
 
           {/* Step Dots */}
           <div className="flex items-center justify-center gap-1.5 pb-3">
-            {TOUR_STEPS.map((_, idx) => (
+            {steps.map((s, idx) => (
               <button
                 key={idx}
                 onClick={() => goToStep(idx)}
@@ -498,11 +693,11 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose }) =
                       ? step.accentColor
                       : idx < currentStep
                         ? `${step.accentColor}66`
-                        : 'rgba(255,255,255,0.15)',
+                        : 'rgba(100, 116, 139, 0.4)',
                   width: idx === currentStep ? '1.5rem' : '0.5rem',
                   boxShadow: idx === currentStep ? `0 0 8px ${step.accentColor}88` : 'none',
                 }}
-                title={`Step ${idx + 1}: ${TOUR_STEPS[idx].title}`}
+                title={`Step ${idx + 1}: ${s.title}`}
               />
             ))}
           </div>

@@ -169,7 +169,7 @@ export const EducationalGuide: React.FC<EducationalGuideProps> = ({ algorithm })
               </div>
               <button
                 onClick={() => setShowAllModal(false)}
-                className="text-gray-400 hover:text-white p-2 rounded-lg bg-white-5 border border-white-10"
+                className="text-gray-400 hover:text-white p-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700"
               >
                 <X className="w-6 h-6" />
               </button>

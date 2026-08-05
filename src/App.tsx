@@ -61,10 +61,29 @@ export function App() {
   const [stressReport, setStressReport] = useState<BenchmarkReport | null>(null);
   const [isStressRunning, setIsStressRunning] = useState(false);
 
-  // Walking Guide Tour state
+  // Walking Guide Tour — per-topic tracking
+  const getTourSeenKey = (topicId: string) => `tour-seen:${topicId}`;
   const [showTour, setShowTour] = useState(() => {
-    return !localStorage.getItem('rlv-tour-seen');
+    // Auto-show on initial load only if rate-limiting tour hasn't been seen
+    return !localStorage.getItem(getTourSeenKey('rate-limiting'));
   });
+
+  // Auto-show the tour when switching to a topic the user hasn't seen yet
+  const handleSelectTopic = (topicId: string) => {
+    setActiveTopicId(topicId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Only auto-trigger if this topic has a dedicated tour and hasn't been seen
+    const TOPICS_WITH_TOURS = ['rate-limiting', 'load-balancing', 'caching', 'consistent-hashing'];
+    if (TOPICS_WITH_TOURS.includes(topicId) && !localStorage.getItem(getTourSeenKey(topicId))) {
+      setShowTour(true);
+    }
+  };
+
+  // Mark tour as seen for the current active topic
+  const handleCloseTour = () => {
+    localStorage.setItem(getTourSeenKey(activeTopicId), 'true');
+    setShowTour(false);
+  };
 
   const lastTickTimeRef = useRef<number>(Date.now());
   const lastAutoRequestTimeRef = useRef<number>(Date.now());
@@ -250,15 +269,12 @@ export function App() {
   return (
     <div className="min-h-screen font-sans">
       {/* Walking Guide Tour */}
-      <WalkingGuide isOpen={showTour} onClose={() => setShowTour(false)} />
+      <WalkingGuide isOpen={showTour} onClose={handleCloseTour} activeTopicId={activeTopicId} />
 
       {/* HLD Topics Navigation Sidebar */}
       <Sidebar
         activeTopicId={activeTopicId}
-        onSelectTopic={(topicId) => {
-          setActiveTopicId(topicId);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onSelectTopic={handleSelectTopic}
         isOpen={isSidebarOpen}
         onToggleOpen={() => setIsSidebarOpen(!isSidebarOpen)}
       />
@@ -275,7 +291,10 @@ export function App() {
             onTriggerBurst={handleTriggerBurst}
             onSelectPreset={handleSelectPreset}
             onRunStressTest={handleRunStressTest}
-            onStartTour={() => setShowTour(true)}
+            onStartTour={() => {
+              localStorage.removeItem(getTourSeenKey(activeTopicId));
+              setShowTour(true);
+            }}
             isSidebarOpen={isSidebarOpen}
             onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           />

@@ -185,7 +185,7 @@ export const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                 className={`px-3-5 py-1-5 rounded-lg transition-all cursor-pointer transform hover:scale-105 font-bold ${
                   filterStatus === 'all'
                     ? 'bg-blue-600 text-white shadow-lg border border-blue-400 glow-blue'
-                    : 'bg-white-10 text-gray-200 hover:bg-white-20 hover:text-white border border-white-10 hover:border-blue-400/50'
+                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
                 }`}
               >
                 All ({state.logs.length})
@@ -196,7 +196,7 @@ export const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                 className={`px-3-5 py-1-5 rounded-lg transition-all cursor-pointer transform hover:scale-105 font-bold ${
                   filterStatus === 'allowed'
                     ? 'bg-emerald-600 text-white shadow-lg border border-emerald-400 glow-emerald'
-                    : 'bg-white-10 text-gray-200 hover:bg-white-20 hover:text-white border border-white-10 hover:border-emerald-400/50'
+                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
                 }`}
               >
                 200 OK
@@ -207,7 +207,7 @@ export const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
                 className={`px-3-5 py-1-5 rounded-lg transition-all cursor-pointer transform hover:scale-105 font-bold ${
                   filterStatus === 'rejected'
                     ? 'bg-rose-600 text-white shadow-lg border border-rose-400 glow-rose'
-                    : 'bg-white-10 text-gray-200 hover:bg-white-20 hover:text-white border border-white-10 hover:border-rose-400/50'
+                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
                 }`}
               >
                 429 Blocked
@@ -235,7 +235,7 @@ export const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
           ) : (
             <table className="w-full text-left border-collapse">
               <thead className="sticky top-0 bg-black-90 z-10 shadow-md">
-                <tr className="text-xs uppercase font-mono text-white border-b border-white-20 bg-white-10">
+                <tr className="text-xs uppercase font-mono text-white border-b border-white-20 bg-slate-900">
                   <th className="py-3 px-4">Time</th>
                   <th className="py-3 px-4">IP Address</th>
                   <th className="py-3 px-4">Endpoint</th>
@@ -283,7 +283,7 @@ export const MetricsDashboard: React.FC<MetricsDashboardProps> = ({
             <div className="glass-panel p-6 max-w-md w-full border-blue-500-40 relative glow-blue shadow-2xl">
               <button
                 onClick={() => setSelectedLog(null)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white p-1 rounded-lg bg-white-5 border border-white-10"
+                className="absolute top-4 right-4 text-gray-400 hover:text-white p-1 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700"
               >
                 <X className="w-5 h-5" />
               </button>
