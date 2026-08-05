@@ -264,13 +264,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToTopic }) =
           SECTION 2 — SQL Playground (below graph)
       ─────────────────────────────────────────────── */}
       <SqlPlaygroundSection onNavigateToSharding={() => onNavigateToTopic('db-sharding')} />
-
-      {/* ───────────────────────────────────────────────
-          FOOTER
-      ─────────────────────────────────────────────── */}
-      <footer className="text-center font-mono text-xs text-slate-600 bg-slate-950 py-6 border-t border-slate-900">
-        System Craft HLD • Drag nodes to rearrange | Scroll down for SQL Playground
-      </footer>
     </>
   );
 };
