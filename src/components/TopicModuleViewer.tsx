@@ -8,6 +8,12 @@ import {
 import { LoadBalancerModule } from './topics/LoadBalancerModule';
 import { CachingModule } from './topics/CachingModule';
 import { ConsistentHashingModule } from './topics/ConsistentHashingModule';
+import { ApiGatewayModule } from './topics/ApiGatewayModule';
+import { DbShardingModule } from './topics/DbShardingModule';
+import { MessageQueuesModule } from './topics/MessageQueuesModule';
+import { ServiceDiscoveryModule } from './topics/ServiceDiscoveryModule';
+import { CdnStorageModule } from './topics/CdnStorageModule';
+import { ConsensusModule } from './topics/ConsensusModule';
 
 interface TopicModuleViewerProps {
   topicId: string;
@@ -47,11 +53,7 @@ export const TopicModuleViewer: React.FC<TopicModuleViewerProps> = ({ topicId })
                 <h2 className="text-2xl font-extrabold text-white tracking-tight font-heading">
                   {topic.title}
                 </h2>
-                {topic.status === 'interactive' ? (
-                  <span className="badge badge-cyan">⚡ Live Simulator</span>
-                ) : (
-                  <span className="badge bg-purple-500/20 text-purple-300 border-purple-500/40">📄 HLD Spec</span>
-                )}
+                <span className="badge badge-cyan">⚡ Live Interactive Simulator</span>
               </div>
               <p className="text-xs text-gray-400 font-mono mt-0.5">{topic.description}</p>
             </div>
@@ -99,9 +101,15 @@ export const TopicModuleViewer: React.FC<TopicModuleViewerProps> = ({ topicId })
           {topicId === 'load-balancing' && <LoadBalancerModule />}
           {topicId === 'caching' && <CachingModule />}
           {topicId === 'consistent-hashing' && <ConsistentHashingModule />}
+          {topicId === 'api-gateway' && <ApiGatewayModule />}
+          {topicId === 'db-sharding' && <DbShardingModule />}
+          {topicId === 'message-queues' && <MessageQueuesModule />}
+          {topicId === 'service-discovery' && <ServiceDiscoveryModule />}
+          {topicId === 'cdn-storage' && <CdnStorageModule />}
+          {topicId === 'consensus' && <ConsensusModule />}
 
-          {/* GENERIC HLD SPEC VISUALIZER FOR OTHER MODULES */}
-          {!['load-balancing', 'caching', 'consistent-hashing'].includes(topicId) && (
+          {/* FALLBACK */}
+          {!['load-balancing', 'caching', 'consistent-hashing', 'api-gateway', 'db-sharding', 'message-queues', 'service-discovery', 'cdn-storage', 'consensus'].includes(topicId) && (
             <div className="glass-panel p-8 text-center space-y-4">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600/30 to-violet-600/30 border border-blue-500/40 flex items-center justify-center mx-auto text-blue-400 glow-blue">
                 <Layers className="w-8 h-8" />
