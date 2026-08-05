@@ -3,6 +3,7 @@ import {
   X, ChevronRight, ChevronLeft, Volume2, VolumeX,
   Sparkles, Zap, Sliders, Eye, BarChart3, Code2, BookOpen,
   GitCompareArrows, Play, SkipForward, Navigation, Mic, Server,
+  Cpu, RefreshCw,
 } from 'lucide-react';
 import { soundFx } from '../utils/audio';
 
@@ -321,12 +322,153 @@ const CONSISTENT_HASHING_TOUR_STEPS: TourStep[] = [
   },
 ];
 
+const API_GATEWAY_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'ag-welcome',
+    title: 'Welcome to API Gateway & Reverse Proxy Simulator',
+    description: 'Explore how API Gateways (Kong, AWS API Gateway, Nginx) handle routing, SSL termination, rate limiting, and request transformation.',
+    narration: 'Welcome to the API Gateway Simulator! Here you can see how gateways handle routing, SSL termination, rate limiting, and header transformations.',
+    icon: <Cpu className="w-7 h-7 text-purple-400" />,
+    position: 'center',
+    accentColor: '#a855f7',
+  },
+  {
+    id: 'ag-routing',
+    title: 'Path-Based & Host-Based Routing',
+    description: 'Route requests based on URI path patterns (/api/v1/users, /api/v1/orders) to upstream microservices.',
+    narration: 'Path-based routing inspects incoming URI paths and directs traffic to the correct downstream microservice.',
+    icon: <Navigation className="w-7 h-7 text-cyan-400" />,
+    position: 'center',
+    accentColor: '#06b6d4',
+  },
+  {
+    id: 'ag-features',
+    title: 'Auth, Rate Limiting & SSL Offloading',
+    description: 'Inspect gateway middleware processing including JWT verification, rate limit headers, and SSL decryption.',
+    narration: 'API Gateways offload common cross-cutting concerns like authentication, rate limiting, and TLS termination so backend services stay lightweight.',
+    icon: <Zap className="w-7 h-7 text-amber-400" />,
+    position: 'center',
+    accentColor: '#f59e0b',
+  },
+];
+
+const SERVICE_DISCOVERY_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'sd-welcome',
+    title: 'Welcome to Service Registry & Discovery',
+    description: 'Learn how dynamic microservice discovery engines (Consul, Eureka, etcd) track dynamic IP addresses and health checks.',
+    narration: 'Welcome to Service Discovery! Discover how systems like Consul and Eureka automatically track changing microservice IPs.',
+    icon: <RefreshCw className="w-7 h-7 text-sky-400" />,
+    position: 'center',
+    accentColor: '#38bdf8',
+  },
+  {
+    id: 'sd-heartbeat',
+    title: 'Heartbeat Health Checks & Self-Healing',
+    description: 'Observe service instances sending periodic heartbeats to maintain active status in the global registry.',
+    narration: 'Services send periodic heartbeats. If a node fails to send a heartbeat, it is automatically deregistered from the pool.',
+    icon: <Eye className="w-7 h-7 text-emerald-400" />,
+    position: 'center',
+    accentColor: '#10b981',
+  },
+];
+
+const CONSENSUS_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'raft-welcome',
+    title: 'Welcome to Raft Distributed Consensus Engine',
+    description: 'Visualize Leader Election, Heartbeats, Log Replication, and Quorum Consensus across distributed nodes (etcd, ZooKeeper).',
+    narration: 'Welcome to Raft Consensus! Understand how distributed nodes agree on state using Leader Election, Log Replication, and Quorum rules.',
+    icon: <Server className="w-7 h-7 text-rose-400" />,
+    position: 'center',
+    accentColor: '#f43f5e',
+  },
+  {
+    id: 'raft-election',
+    title: 'Leader Election & Term Randomized Timers',
+    description: 'Watch nodes transition between Follower, Candidate, and Leader states when heartbeat timers expire.',
+    narration: 'If a follower misses a leader heartbeat, it triggers an election term and requests votes from peers until a majority leader is chosen.',
+    icon: <Sliders className="w-7 h-7 text-amber-400" />,
+    position: 'center',
+    accentColor: '#f59e0b',
+  },
+];
+
+const MESSAGE_QUEUES_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'mq-welcome',
+    title: 'Welcome to Kafka Message Stream & Async Queue',
+    description: 'Simulate asynchronous message publishing, topic partitioning, consumer group offsets, and backpressure buffer management.',
+    narration: 'Welcome to Kafka Message Streaming! Learn how producers publish events to partitioned topics processed by consumer groups.',
+    icon: <Zap className="w-7 h-7 text-purple-400" />,
+    position: 'center',
+    accentColor: '#8b5cf6',
+  },
+  {
+    id: 'mq-partition',
+    title: 'Partitions & Consumer Group Offsets',
+    description: 'Observe how messages are assigned to partitions for horizontal scalability and sequential processing.',
+    narration: 'Partitions allow messages to be processed concurrently across consumer group instances while preserving order within each partition.',
+    icon: <BarChart3 className="w-7 h-7 text-cyan-400" />,
+    position: 'center',
+    accentColor: '#06b6d4',
+  },
+];
+
+const DB_SHARDING_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'shard-welcome',
+    title: 'Welcome to Database Sharding Architecture',
+    description: 'Learn how massive database tables are split across multiple database shards using Range, Hash, and Directory sharding algorithms.',
+    narration: 'Welcome to Database Sharding! Discover how huge datasets are split across multiple database instances to scale beyond single-node limits.',
+    icon: <Sparkles className="w-7 h-7 text-pink-400" />,
+    position: 'center',
+    accentColor: '#ec4899',
+  },
+  {
+    id: 'shard-key',
+    title: 'Shard Key Selection & Cross-Shard Queries',
+    description: 'Select effective Shard Keys (e.g. user_id) to avoid expensive scatter-gather queries across shards.',
+    narration: 'Choosing the right shard key ensures read and write queries target a single database shard efficiently.',
+    icon: <Eye className="w-7 h-7 text-emerald-400" />,
+    position: 'center',
+    accentColor: '#10b981',
+  },
+];
+
+const CDN_STORAGE_TOUR_STEPS: TourStep[] = [
+  {
+    id: 'cdn-welcome',
+    title: 'Welcome to CDN Edge PoP & Static Asset Caching',
+    description: 'Simulate how Content Delivery Networks (Cloudflare, Fastly, AWS CloudFront) cache static assets near users globally.',
+    narration: 'Welcome to CDN Edge Storage! See how edge PoP servers serve assets near users to reduce latency and origin server load.',
+    icon: <Zap className="w-7 h-7 text-teal-400" />,
+    position: 'center',
+    accentColor: '#14b8a6',
+  },
+  {
+    id: 'cdn-edge',
+    title: 'Edge Cache Invalidation & Origin Fetch',
+    description: 'Watch static images and video assets get served directly from the nearest Edge PoP with ultra-low latency.',
+    narration: 'When users request files, the nearest Edge PoP responds in milliseconds, fetching from the origin server only on cache misses.',
+    icon: <BarChart3 className="w-7 h-7 text-cyan-400" />,
+    position: 'center',
+    accentColor: '#06b6d4',
+  },
+];
+
 // Map of topic IDs to their dedicated tour steps
 const TOPIC_TOUR_MAP: Record<string, TourStep[]> = {
   'rate-limiting': TOUR_STEPS,
+  'api-gateway': API_GATEWAY_TOUR_STEPS,
   'load-balancing': LOAD_BALANCER_TOUR_STEPS,
+  'service-discovery': SERVICE_DISCOVERY_TOUR_STEPS,
   'caching': CACHING_TOUR_STEPS,
   'consistent-hashing': CONSISTENT_HASHING_TOUR_STEPS,
+  'consensus': CONSENSUS_TOUR_STEPS,
+  'message-queues': MESSAGE_QUEUES_TOUR_STEPS,
+  'db-sharding': DB_SHARDING_TOUR_STEPS,
+  'cdn-storage': CDN_STORAGE_TOUR_STEPS,
 };
 
 // Helper to filter out legacy robotic voices and get clean English human voices
@@ -453,15 +595,12 @@ export const WalkingGuide: React.FC<WalkingGuideProps> = ({ isOpen, onClose, act
     return () => stopSpeech();
   }, [currentStep, isOpen, narrateStep]); // narrateStep dep ensures topic switch re-fires correct audio
 
-  // Reset on open
+  // Reset step & cancel speech on modal open OR when topic changes
   useEffect(() => {
-    if (isOpen) {
-      setCurrentStep(0);
-      setIsTransitioning(false);
-    } else {
-      stopSpeech();
-    }
-  }, [isOpen, stopSpeech]);
+    stopSpeech();
+    setCurrentStep(0);
+    setIsTransitioning(false);
+  }, [isOpen, activeTopicId, stopSpeech]);
 
   const goToStep = useCallback(
     (nextStep: number) => {

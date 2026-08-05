@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 
-const TOPICS_WITH_TOURS = ['rate-limiting', 'load-balancing', 'caching', 'consistent-hashing'];
+const TOPICS_WITH_TOURS = [
+  'rate-limiting',
+  'api-gateway',
+  'load-balancing',
+  'service-discovery',
+  'caching',
+  'consistent-hashing',
+  'consensus',
+  'message-queues',
+  'db-sharding',
+  'cdn-storage',
+];
 
 // Read initial topic from URL hash (e.g. #/topic/rate-limiting or #/)
 function getTopicFromHash(): string {
