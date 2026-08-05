@@ -228,21 +228,30 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToTopic }) =
           );
         })}
 
-        {/* Header — always on top inside graph */}
+        {/* Header — clean top bar on graph */}
         <header style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50 }}
           className="px-6 sm:px-12 pt-6 pointer-events-auto">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center font-bold text-white shadow-lg glow-cyan border border-white/20">⚡</div>
-              <span className="text-xl font-extrabold font-heading tracking-tight text-white">System Craft HLD</span>
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center font-bold text-white shadow-lg glow-cyan border border-white/20">
+                ⚡
+              </div>
+              <span className="text-xl font-extrabold font-heading tracking-tight text-white">
+                System Craft HLD
+              </span>
             </div>
             <div className="flex items-center gap-3">
-              <button onClick={handleResetPositions}
-                className="px-4 py-2.5 rounded-2xl bg-slate-900/90 text-slate-300 hover:text-white font-mono font-bold text-xs border border-slate-800 hover:border-slate-700 transition-all cursor-pointer flex items-center gap-1.5">
-                <RefreshCw className="w-3.5 h-3.5" /><span>Reset Layout</span>
+              <button
+                onClick={handleResetPositions}
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 hover:from-cyan-600 hover:via-blue-600 hover:to-indigo-600 text-white font-mono font-bold text-xs shadow-xl border border-white/20 hover:border-white/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2 glow-cyan"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Reset Layout</span>
               </button>
-              <button onClick={() => onNavigateToTopic('rate-limiting')}
-                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-mono font-bold text-xs shadow-xl border border-white/30 hover:scale-105 transition-all cursor-pointer flex items-center gap-2 glow-cyan">
+              <button
+                onClick={() => onNavigateToTopic('rate-limiting')}
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-mono font-bold text-xs shadow-xl border border-white/30 hover:scale-105 transition-all cursor-pointer flex items-center gap-2 glow-cyan"
+              >
                 <span>Launch All Simulators</span>
                 <Play className="w-3.5 h-3.5 fill-current" />
               </button>

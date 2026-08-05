@@ -1,6 +1,6 @@
-# Rate Limiter Visualizer ⚡
+# System Craft HLD & SQL Mastery Visualizer ⚡
 
-An interactive High-Level System Design (HLD) web application that visually simulates, benchmarks, and explains the core Rate Limiting algorithms used in modern distributed systems and microservices.
+An interactive High-Level System Design (HLD) & SQL Practice application that visually simulates distributed system architectures, benchmarks core rate-limiting algorithms, and provides an end-to-end level-based SQL practice game.
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue?logo=typescript)
@@ -9,9 +9,20 @@ An interactive High-Level System Design (HLD) web application that visually simu
 
 ---
 
-## 🌟 Features
+## 🌟 Key Features
 
-### 1. ⚙️ Interactive Algorithm Simulations
+### 1. 🌐 Interactive HLD Topology Graph
+* **Drag-and-Drop Node Customization**: Drag system components (Client, Gateway, Cache, Rate Limiter, DB Cluster, Queue) on an interactive canvas with saved positions.
+* **Stage-Based Pipeline Architecture**: Visualizes end-to-end traffic flow across 4 core stages (Client Tier → Gateway Tier → Microservice Core → Data Engine).
+
+### 2. 🗄️ Level-Based SQL Practice Studio & Stateful Engine
+* **50+ Real-World SQL Practice Challenges**: Extracted from standard SQL interview sets covering `emp`, `dept`, and `salgrade` schemas.
+* **Stateful In-Memory Query Engine**: Supports live execution of `SELECT`, `INSERT INTO`, `DELETE`, `JOIN`, `GROUP BY`, and `HAVING` queries without precomputed static mocks.
+* **Smart Autocomplete & Keyword Engine**: Floating popover auto-suggests SQL keywords (`SELECT`, `WHERE`, `GROUP BY`, `HAVING`, `LIMIT`, `JOIN`), table names, and column identifiers with `Tab` / `Enter` completion.
+* **Level Progression & XP System**: Unlocks questions sequentially with progress and XP tracking persisted in `localStorage`.
+* **Sidebar Layout & Expected Result Comparison**: Side-by-side tabs for **Your Output** vs **Expected Result** tables, and tabbed toggle between **Questions Bank** and **DB Schema Explorer**.
+
+### 3. ⚙️ Interactive Rate Limiting Algorithm Simulators
 Visualizes five fundamental rate-limiting algorithms in real-time:
 * **Token Bucket**: Simulates continuous token accumulation and instantaneous burst consumption.
 * **Leaky Bucket**: Demonstrates smooth, constant-rate egress queue processing.
@@ -19,25 +30,12 @@ Visualizes five fundamental rate-limiting algorithms in real-time:
 * **Sliding Window Log**: Logs exact timestamps to enforce strict boundary enforcement.
 * **Sliding Window Counter**: Blends previous and current window counters to eliminate edge spikes efficiently.
 
-### 2. 🎛️ Dynamic Traffic Generator & Controls
+### 4. 🎛️ Dynamic Traffic Generator & Benchmark Engine
 * **Traffic Patterns**: Test under **Steady**, **Spike**, **Wave**, and **DDoS** attack traffic scenarios.
-* **Simulation Speed**: Adjustable execution speeds (`0.5x`, `1x`, `2x`, `5x`).
-* **Manual Request Injection**: Trigger single or burst requests manually to inspect exact behavior.
-
-### 3. 📊 Real-Time Metrics & Logs
-* Live Request-per-Second (RPS) gauges and capacity metrics.
-* Historical charts displaying allowed vs. rejected traffic ratios.
-* Searchable request log table capturing Client IP, Latency, Status (`allowed` / `rejected`), and drop reasons.
-
-### 4. 🧪 Stress-Test Benchmark Engine
-* Run automated stress tests to compute algorithm efficiency score, drop rates, and overall resilience under simulated load.
+* **Stress-Test Benchmarking**: Automated load runner calculating drop rates, efficiency scores, and throughput metrics.
 
 ### 5. 💻 Production Code Snippets & Architecture Guides
-* Ready-to-use production code implementations in **Python**, **Go**, **TypeScript / Node.js**, and **Redis + Lua**.
-* Deep-dive educational guides explaining trade-offs, distributed locks, memory footprints, and edge cases.
-
-### 6. ⚖️ Comparison Matrix
-* Side-by-side comparative breakdown of Time Complexity, Space Complexity, Burst Support, and Distributed System Scalability.
+* Production code implementations in **Python**, **Go**, **TypeScript / Node.js**, and **Redis + Lua**.
 
 ---
 
@@ -73,7 +71,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open your browser and navigate to `http://localhost:5173` (or the port specified in your terminal).
+Open your browser and navigate to `http://localhost:5173`.
 
 ---
 
@@ -81,10 +79,9 @@ Open your browser and navigate to `http://localhost:5173` (or the port specified
 
 In the project directory, you can run:
 
-* `npm run dev`: Starts the Vite development server with Hot Module Replacement (HMR).
-* `npm run build`: Compiles TypeScript files and builds the optimized production bundle.
-* `npm run preview`: Bootstraps a local web server to preview the production build.
-* `npm run lint`: Runs `oxlint` to check code quality and static analysis.
+* `npm run dev`: Starts the Vite development server.
+* `npm run build`: Compiles TypeScript files and builds the production bundle.
+* `npm run preview`: Bootstraps local server to preview production build.
 
 ---
 
@@ -95,6 +92,9 @@ HLD Visualizer/
 ├── public/                 # Static assets & icons
 ├── src/
 │   ├── components/         # UI Components
+│   │   ├── LandingPage.tsx           # Main HLD topology canvas & intro
+│   │   ├── SqlPlaygroundSection.tsx  # Pure SQL intro & studio launcher
+│   │   ├── SqlEditorModal.tsx        # Full-screen level progression SQL game & engine
 │   │   ├── AlgorithmSelector.tsx
 │   │   ├── CodeSnippets.tsx
 │   │   ├── ComparisonMatrix.tsx
@@ -103,6 +103,8 @@ HLD Visualizer/
 │   │   ├── Header.tsx
 │   │   ├── MetricsDashboard.tsx
 │   │   └── VisualizerCanvas.tsx
+│   ├── data/
+│   │   └── sqlQuestions.json  # 50+ Structured SQL practice questions
 │   ├── utils/              # Core logic & algorithms
 │   │   ├── audio.ts        # Sound FX generation
 │   │   ├── codeSnippets.ts # Multi-language code snippets
@@ -110,25 +112,13 @@ HLD Visualizer/
 │   │   ├── explanations.ts # Deep-dive documentation
 │   │   └── rateLimiters.ts # Pure rate limiter algorithm logic
 │   ├── App.tsx             # Main application orchestrator
-│   ├── index.css           # Styling system & Tailwind CSS rules
+│   ├── index.css           # Styling system, dark scrollbars & Tailwind rules
 │   ├── main.tsx            # Application entrypoint
 │   └── types.ts            # TypeScript interfaces & types
-├── .gitignore              # Git ignore rules
 ├── package.json            # Project dependencies & scripts
 ├── tsconfig.json           # TypeScript configuration
 └── vite.config.ts          # Vite build configuration
 ```
-
----
-
-## 🛠️ Built With
-
-* **[React 19](https://react.dev/)**: UI rendering library
-* **[TypeScript](https://www.typescriptlang.org/)**: Type-safe development
-* **[Vite](https://vitejs.dev/)**: Fast frontend build tool
-* **[Tailwind CSS v4](https://tailwindcss.com/)**: Modern utility-first styling
-* **[Lucide React](https://lucide.dev/)**: Clean icon suite
-* **Web Audio API**: Browser-native sound synthesis for request alerts
 
 ---
 
