@@ -84,16 +84,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="p-3.5 sidebar-header flex items-center justify-between min-h-[64px]">
           {isOpen ? (
             <>
-              <div className="flex items-center gap-3 overflow-hidden">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-violet-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20 border border-white/20 glow-blue">
+              <div
+                onClick={() => onSelectTopic('landing')}
+                className="flex items-center gap-3 overflow-hidden cursor-pointer group"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-violet-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20 border border-white/20 glow-blue group-hover:scale-105 transition-transform">
                   <BookOpen className="w-4 h-4 text-white" />
                 </div>
                 <div className="truncate">
-                  <h2 className="text-xs font-extrabold text-white tracking-tight font-heading truncate">
-                    HLD Architect Suite
+                  <h2 className="text-xs font-extrabold text-white tracking-tight font-heading truncate group-hover:text-cyan-300 transition-colors">
+                    System Craft HLD Hub
                   </h2>
                   <p className="text-[10px] text-cyan-400 font-mono flex items-center gap-1">
-                    <Activity className="w-2.5 h-2.5 animate-pulse" /> {HLD_TOPICS.length} Topics
+                    <Activity className="w-2.5 h-2.5 animate-pulse" /> Home / Prep Hub
                   </p>
                 </div>
               </div>

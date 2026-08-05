@@ -15,6 +15,7 @@ import { ComparisonMatrix } from './components/ComparisonMatrix';
 import { WalkingGuide } from './components/WalkingGuide';
 import { Sidebar } from './components/Sidebar';
 import { TopicModuleViewer } from './components/TopicModuleViewer';
+import { LandingPage } from './components/LandingPage';
 import { Award, Flame, X } from 'lucide-react';
 
 const INITIAL_CONFIG: SimulationConfig = {
@@ -249,6 +250,15 @@ export function App() {
 
     return () => clearInterval(interval);
   }, [config, algorithm, activeTopicId, handleIncomingRequest]);
+
+  // Standalone Landing Page View (No Sidebar, No Header)
+  if (activeTopicId === 'landing') {
+    return (
+      <LandingPage
+        onNavigateToTopic={(topicId) => handleSelectTopic(topicId)}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen font-sans">

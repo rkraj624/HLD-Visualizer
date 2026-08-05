@@ -85,8 +85,15 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Action Controls: Tour Guide */}
+          {/* Action Controls: Home & Tour Guide */}
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => onChangeConfig({ activeTopicId: 'landing' } as any)}
+              className="btn-secondary text-xs text-cyan-300 border-cyan-500/40 py-1.5 px-3 font-mono font-bold"
+              title="Return to HLD Prep Landing Page"
+            >
+              🏠 Home
+            </button>
             <button
               onClick={onStartTour}
               className="tour-trigger-btn"
