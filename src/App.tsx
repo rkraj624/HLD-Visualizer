@@ -3,6 +3,7 @@ import type { AlgorithmType, SimulationConfig, SimulationState, RequestItem } fr
 import { PRESET_SCENARIOS } from './utils/constants';
 import { evaluateRateLimit, processLeakyBucketLeak } from './utils/rateLimiters';
 import { soundFx } from './utils/audio';
+import { useTopicNavigation } from './hooks/useTopicNavigation';
 import { Header } from './components/Header';
 import { AlgorithmSelector } from './components/AlgorithmSelector';
 import { VisualizerCanvas } from './components/VisualizerCanvas';
@@ -35,7 +36,14 @@ interface BenchmarkReport {
 }
 
 export function App() {
-  const [activeTopicId, setActiveTopicId] = useState<string>('rate-limiting');
+  const {
+    activeTopicId,
+    showTour,
+    handleSelectTopic,
+    handleCloseTour,
+    handleRestartTour,
+  } = useTopicNavigation();
+
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
   const [algorithm, setAlgorithm] = useState<AlgorithmType>('token-bucket');
   const [config, setConfig] = useState<SimulationConfig>(INITIAL_CONFIG);
@@ -60,30 +68,6 @@ export function App() {
 
   const [stressReport, setStressReport] = useState<BenchmarkReport | null>(null);
   const [isStressRunning, setIsStressRunning] = useState(false);
-
-  // Walking Guide Tour — per-topic tracking
-  const getTourSeenKey = (topicId: string) => `tour-seen:${topicId}`;
-  const [showTour, setShowTour] = useState(() => {
-    // Auto-show on initial load only if rate-limiting tour hasn't been seen
-    return !localStorage.getItem(getTourSeenKey('rate-limiting'));
-  });
-
-  // Auto-show the tour when switching to a topic the user hasn't seen yet
-  const handleSelectTopic = (topicId: string) => {
-    setActiveTopicId(topicId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Only auto-trigger if this topic has a dedicated tour and hasn't been seen
-    const TOPICS_WITH_TOURS = ['rate-limiting', 'load-balancing', 'caching', 'consistent-hashing'];
-    if (TOPICS_WITH_TOURS.includes(topicId) && !localStorage.getItem(getTourSeenKey(topicId))) {
-      setShowTour(true);
-    }
-  };
-
-  // Mark tour as seen for the current active topic
-  const handleCloseTour = () => {
-    localStorage.setItem(getTourSeenKey(activeTopicId), 'true');
-    setShowTour(false);
-  };
 
   const lastTickTimeRef = useRef<number>(Date.now());
   const lastAutoRequestTimeRef = useRef<number>(Date.now());
@@ -291,10 +275,7 @@ export function App() {
             onTriggerBurst={handleTriggerBurst}
             onSelectPreset={handleSelectPreset}
             onRunStressTest={handleRunStressTest}
-            onStartTour={() => {
-              localStorage.removeItem(getTourSeenKey(activeTopicId));
-              setShowTour(true);
-            }}
+            onStartTour={handleRestartTour}
             isSidebarOpen={isSidebarOpen}
             onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           />

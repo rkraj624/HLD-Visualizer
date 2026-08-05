@@ -98,16 +98,17 @@ code, pre, .font-mono {
 .text-black { color: #000000 !important; }
 .text-gray-200 { color: #e2e8f0 !important; }
 .text-gray-300 { color: #cbd5e1 !important; }
-.text-gray-400 { color: #94a3b8 !important; }
+.text-gray-400 { color: #475569 !important; }
 .text-gray-500 { color: #64748b !important; }
 .text-gray-600 { color: #475569 !important; }
 
 .text-blue-300 { color: #93c5fd !important; }
 .text-blue-400 { color: #60a5fa !important; }
-.text-cyan-300 { color: #7dd3fc !important; }
+.text-cyan-300 { color: #01a5d5 !important; }
 .text-cyan-400 { color: #38bdf8 !important; }
 .text-emerald-300 { color: #6ee7b7 !important; }
 .text-emerald-400 { color: #34d399 !important; }
+.text-emerald-500 { color: #129563 !important; }
 .text-amber-300 { color: #fde047 !important; }
 .text-amber-400 { color: #fbbf24 !important; }
 .text-rose-300 { color: #fca5a5 !important; }

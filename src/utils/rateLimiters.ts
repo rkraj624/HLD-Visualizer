@@ -10,13 +10,14 @@ export function evaluateRateLimit(
   algorithm: AlgorithmType,
   state: SimulationState,
   config: SimulationConfig,
-  now: number = Date.now()
+  now: number = Date.now(),
+  idGenerator: () => string = () => Math.random().toString(36).substring(7)
 ): CheckResult {
   switch (algorithm) {
     case 'token-bucket':
       return evaluateTokenBucket(state, config, now);
     case 'leaky-bucket':
-      return evaluateLeakyBucket(state, config, now);
+      return evaluateLeakyBucket(state, config, now, idGenerator);
     case 'fixed-window':
       return evaluateFixedWindow(state, config, now);
     case 'sliding-window-log':
@@ -65,13 +66,14 @@ function evaluateTokenBucket(
 function evaluateLeakyBucket(
   state: SimulationState,
   config: SimulationConfig,
-  now: number
+  now: number,
+  idGenerator: () => string
 ): CheckResult {
   // Queue size is capacity
   const queue = [...state.queue];
 
   if (queue.length < config.capacity) {
-    queue.push({ id: Math.random().toString(36).substring(7), timestamp: now });
+    queue.push({ id: idGenerator(), timestamp: now });
     return {
       allowed: true,
       newState: { queue },
